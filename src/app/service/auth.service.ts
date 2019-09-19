@@ -1,36 +1,52 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginRequest} from '../common/auth';
+import {AuthResponse, AuthResponseWrapper, LoginRequest, User} from '../common/auth';
 import {Urls} from '../enums/urls';
-import {MyResponse} from '../common';
+import {Roles} from '../enums';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private isAuth = false;
+  // TODO возможно стоит вынести эти данные в другой сервис
+  private currentUser: User;
+  private userRole: Roles;
 
   constructor(private http: HttpClient) { }
 
   authenticate(request: LoginRequest) {
     const url = Urls.AUTH;
-    return this.http.post<MyResponse>(url, request);
+    return this.http.post<AuthResponseWrapper>(url, request);
   }
 
-  fake(request: LoginRequest) {
+  fake() {
     const url = Urls.FAKE_AUTH;
-    return this.http.post<MyResponse>(url, request);
+    return this.http.post<AuthResponseWrapper>(url, {});
   }
 
-  success() {
+  success(response: AuthResponse) {
     this.isAuth = true;
+    this.currentUser = response.user;
+    this.userRole = response.role;
   }
 
-  error() {
+  logout() {
     this.isAuth = false;
+    this.currentUser = {} as User;
+    this.userRole = {} as Roles;
   }
 
   isAuthenticated() {
     return this.isAuth;
+  }
+
+  user() {
+    return this.currentUser;
+  }
+
+  role() {
+    return this.userRole;
   }
 }

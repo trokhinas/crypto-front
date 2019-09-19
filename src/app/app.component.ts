@@ -7,20 +7,10 @@ import {ResponseStatus} from './enums';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.auth.authenticate({login: 'aaa', password: 'bbb'}).subscribe(
-      response => {
-        if (response.status === ResponseStatus.OK) {
-          this.auth.success();
-        } else {
-          alert(response.message);
-        }
-      },
-      error => {alert(error.toString()); }
-    );
   }
 }
