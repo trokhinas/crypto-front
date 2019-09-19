@@ -3,6 +3,7 @@ import {AuthService} from '../../../service/auth.service';
 import {AuthResponseWrapper, LoginRequest} from '../../../common/auth';
 import {ResponseStatus} from '../../../enums';
 import {Router} from '@angular/router';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,9 @@ export class LoginComponent implements OnInit {
     login: '',
     password: ''
   };
+  private returnUrl: string;
   private authRespHandler = (response: AuthResponseWrapper): void => {
     if (response.status === ResponseStatus.OK) {
-      this.auth.success(response.data);
       this.router.navigate(['main']);
     } else {
       alert(response.message);
@@ -28,17 +29,21 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    // reset login status
+    this.auth.logout();
+
+    this.returnUrl = this.router.routerState.root.snapshot.queryParams['returnUrl'] || 'main';
   }
 
   authenticate() {
-    this.auth.authenticate(this.data).subscribe(
+    this.auth.authenticate(this.data).pipe(first()).subscribe(
       this.authRespHandler,
       this.errorRespHandler
     );
   }
 
   fakeAuthenticate() {
-    this.auth.fake().subscribe(
+    this.auth.fake().pipe(first()).subscribe(
       this.authRespHandler,
       this.errorRespHandler
     );

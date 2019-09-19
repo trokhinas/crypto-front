@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AuthResponse, AuthResponseWrapper, LoginRequest, User} from '../common/auth';
 import {Urls} from '../enums/urls';
-import {Roles} from '../enums';
+import {ResponseStatus, Roles} from '../enums';
+
+import {first, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,42 +13,46 @@ import {Roles} from '../enums';
 export class AuthService {
   private isAuth = false;
   // TODO возможно стоит вынести эти данные в другой сервис
-  private currentUser: User;
-  private userRole: Roles;
+  private userKey = 'currentUser';
+  private respMapper = (response: AuthResponseWrapper) => {
+    if (response.status === ResponseStatus.OK) {
+      localStorage.setItem(this.userKey, JSON.stringify(response.data));
+    }
+    return response;
+  };
 
   constructor(private http: HttpClient) { }
 
   authenticate(request: LoginRequest) {
     const url = Urls.AUTH;
-    return this.http.post<AuthResponseWrapper>(url, request);
+    return this.http.post<AuthResponseWrapper>(url, request)
+      .pipe(map(this.respMapper));
   }
 
   fake() {
     const url = Urls.FAKE_AUTH;
-    return this.http.post<AuthResponseWrapper>(url, {});
-  }
-
-  success(response: AuthResponse) {
-    this.isAuth = true;
-    this.currentUser = response.user;
-    this.userRole = response.role;
+    return this.http.post<AuthResponseWrapper>(url, {})
+      .pipe(map(this.respMapper));
   }
 
   logout() {
-    this.isAuth = false;
-    this.currentUser = {} as User;
-    this.userRole = {} as Roles;
+    localStorage.removeItem(this.userKey);
   }
 
   isAuthenticated() {
-    return this.isAuth;
+    return localStorage.getItem(this.userKey);
   }
 
   user() {
-    return this.currentUser;
+    return this.getUserData().user;
   }
 
   role() {
-    return this.userRole;
+    return this.getUserData().role;
   }
+
+  private getUserData() {
+    return JSON.parse(localStorage.getItem(this.userKey)) as AuthResponse;
+  }
+
 }
