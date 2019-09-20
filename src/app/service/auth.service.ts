@@ -5,25 +5,32 @@ import {Urls} from '../enums/urls';
 import {ResponseStatus, Roles} from '../enums';
 
 import {first, map} from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  private isAuth = false;
   // TODO возможно стоит вынести эти данные в другой сервис
   private userKey = 'currentUser';
+  private currentUserDataSubject: BehaviorSubject<AuthResponse>;
+  public currentUserData: Observable<AuthResponse>;
+
   private respMapper = (response: AuthResponseWrapper) => {
     if (response.status === ResponseStatus.OK) {
       localStorage.setItem(this.userKey, JSON.stringify(response.data));
+      this.currentUserDataSubject.next(response.data);
     }
     return response;
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.currentUserDataSubject = new BehaviorSubject<AuthResponse>(JSON.parse(localStorage.getItem(this.userKey)));
+    this.currentUserData = this.currentUserDataSubject.asObservable();
+  }
 
-  authenticate(request: LoginRequest) {
+  login(request: LoginRequest) {
     const url = Urls.AUTH;
     return this.http.post<AuthResponseWrapper>(url, request)
       .pipe(map(this.respMapper));
@@ -37,22 +44,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.userKey);
-  }
-
-  isAuthenticated() {
-    return localStorage.getItem(this.userKey);
-  }
-
-  user() {
-    return this.getUserData().user;
-  }
-
-  role() {
-    return this.getUserData().role;
-  }
-
-  private getUserData() {
-    return JSON.parse(localStorage.getItem(this.userKey)) as AuthResponse;
+    this.currentUserDataSubject.next(null);
   }
 
 }
