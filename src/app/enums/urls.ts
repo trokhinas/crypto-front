@@ -1,5 +1,5 @@
 export enum Urls {
   // auth
-  AUTH = 'api/auth/auth',
-  FAKE_AUTH = 'api/auth/fakeAuth'
+  AUTH = 'api/auth/login',
+  FAKE_AUTH = 'api/auth/fake-login'
 }
