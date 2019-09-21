@@ -1,8 +1,8 @@
 <div class="container">
   <span>
-  u logged in {{auth.user().name}} {{auth.user().surname}}
+  u logged in {{globalData.user().name}} {{globalData.user().surname}}
     <br>
-  with role {{auth.role()}}
+  with role {{globalData.role()}}
   </span>
 
   <p><a [routerLink]="['/login']">Logout</a></p>

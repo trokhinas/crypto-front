@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate() {
-    this.auth.authenticate(this.data).pipe(first()).subscribe(
+    this.auth.login(this.data).pipe(first()).subscribe(
       this.authRespHandler,
       this.errorRespHandler
     );
