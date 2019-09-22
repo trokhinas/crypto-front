@@ -12,39 +12,39 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 
 export class AuthService {
-  // TODO возможно стоит вынести эти данные в другой сервис
-  private userKey = 'currentUser';
-  private currentUserDataSubject: BehaviorSubject<AuthResponse>;
-  public currentUserData: Observable<AuthResponse>;
-
-  private respMapper = (response: AuthResponseWrapper) => {
-    if (response.status === ResponseStatus.OK) {
-      localStorage.setItem(this.userKey, JSON.stringify(response.data));
-      this.currentUserDataSubject.next(response.data);
+    // TODO возможно стоит вынести эти данные в другой сервис
+    private userKey = 'currentUser';
+    private currentUserDataSubject: BehaviorSubject<AuthResponse>;
+    public currentUserData: Observable<AuthResponse>;
+  
+    private setToStorage = (response: AuthResponseWrapper) => {
+      if (response.status === ResponseStatus.OK) {
+        localStorage.setItem(this.userKey, JSON.stringify(response.data));
+        this.currentUserDataSubject.next(response.data);
+      }
+      return response;
+    };
+  
+    constructor(private http: HttpClient) {
+      this.currentUserDataSubject = new BehaviorSubject<AuthResponse>(JSON.parse(localStorage.getItem(this.userKey)));
+      this.currentUserData = this.currentUserDataSubject.asObservable();
     }
-    return response;
-  };
-
-  constructor(private http: HttpClient) {
-    this.currentUserDataSubject = new BehaviorSubject<AuthResponse>(JSON.parse(localStorage.getItem(this.userKey)));
-    this.currentUserData = this.currentUserDataSubject.asObservable();
-  }
-
-  login(request: LoginRequest) {
-    const url = Urls.AUTH;
-    return this.http.post<AuthResponseWrapper>(url, request)
-      .pipe(map(this.respMapper));
-  }
-
-  fake() {
-    const url = Urls.FAKE_AUTH;
-    return this.http.post<AuthResponseWrapper>(url, {})
-      .pipe(map(this.respMapper));
-  }
-
-  logout() {
-    localStorage.removeItem(this.userKey);
-    this.currentUserDataSubject.next(null);
-  }
+  
+    login(request: LoginRequest) {
+      const url = Urls.AUTH;
+      return this.http.post<AuthResponseWrapper>(url, request)
+        .pipe(map(this.setToStorage));
+    }
+  
+    fake() {
+      const url = Urls.FAKE_AUTH;
+      return this.http.post<AuthResponseWrapper>(url, {})
+        .pipe(map(this.setToStorage));
+    }
+  
+    logout() {
+      localStorage.removeItem(this.userKey);
+      this.currentUserDataSubject.next(null);
+    }
 
 }

@@ -1,0 +1,8 @@
+<div class="container" *ngFor="let lecture of lectures">
+    <div class="row">
+        <app-lecture-link
+                [lectureId]="lecture.id"
+                [lectureTitle]="lecture.title"
+        ></app-lecture-link>
+    </div>
+</div>

@@ -4,7 +4,7 @@ export enum ResponseStatus {
 }
 
 export enum Roles {
-  USER,
-  TEACHER,
-  ADMIN
+  USER = "USER",
+  TEACHER = "TEACHER",
+  ADMIN = "ADMIN"
 }

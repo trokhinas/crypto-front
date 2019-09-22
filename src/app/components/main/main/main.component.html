@@ -1,9 +1,14 @@
 <div class="container">
-  <span>
-  u logged in {{globalData.user().name}} {{globalData.user().surname}}
-    <br>
-  with role {{globalData.role()}}
-  </span>
 
-  <p><a [routerLink]="['/login']">Logout</a></p>
+  <div class="row">
+
+      <div class="col">
+          <app-control-panel [user]="user" [role]="role"></app-control-panel>
+      </div>
+
+      <router-outlet></router-outlet>
+
+
+  </div>
+
 </div>

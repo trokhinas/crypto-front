@@ -10,12 +10,26 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './components/auth/login/login.component';
 import { MainComponent } from './components/main/main/main.component';
+import { ControlPanelComponent } from './components/common/control-panel/control-panel.component';
+import { ProfileComponent } from './components/common/profile/profile.component';
+import { CoursesMainComponent } from './components/common/courses/courses-main/courses-main.component';
+import { LectureLinkComponent } from './components/common/courses/lecture/lecture-link/lecture-link.component';
+import { LectureDetailsComponent } from './components/common/courses/lecture/lecture-details/lecture-details.component';
+import { LectureListComponent } from './components/common/courses/lecture/lecture-list/lecture-list.component';
+import { AlgsMainComponent } from './components/common/algs/algs-main/algs-main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    ControlPanelComponent,
+    ProfileComponent,
+    CoursesMainComponent,
+    LectureLinkComponent,
+    LectureDetailsComponent,
+    LectureListComponent,
+    AlgsMainComponent
   ],
   imports: [
     BrowserModule,

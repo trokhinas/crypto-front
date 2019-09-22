@@ -1,0 +1,7 @@
+<div class="d-flex flex-column">
+  <span [routerLink]="['profile']">Профиль</span>
+  <span [routerLink]="['courses/lectures']">Курсы</span>
+  <span [routerLink]="['tests']">Тесты</span>
+  <span [routerLink]="['algorithms']">Алгоритмы</span>
+  <span [routerLink]="['users']" *ngIf="isAdmin()">Пользователи</span>
+</div>
