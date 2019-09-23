@@ -1,24 +1,22 @@
-
-
 <div class="col-4 offset-4 login-form">
-  <form>
-    <h1>Вход</h1><br/>
+    <form>
+        <h1>Вход</h1><br/>
 
-    <label>Логин</label>
-    <br/>
+        <label>Логин</label>
+        <br/>
 
-    <input type="text" [(ngModel)]="data.login" name="login">
-    <br/>
+        <input class="input" type="text" [(ngModel)]="data.login" name="login">
+        <br/>
 
-    <label>Пароль</label>
-    <br/>
+        <label>Пароль</label>
+        <br/>
 
-    <input type="password" [(ngModel)]="data.password" name="password">
-    <br/>
+        <input type="password" [(ngModel)]="data.password" name="password">
+        <br/>
 
-    <button class="btn btn-success" (click)="authenticate()">Войти</button>
-    <br/>
+        <button class="btn btn-primary" (click)="authenticate()">Войти</button>
+        <br/>
 
-    <button class="btn btn-success" (click)="fakeAuthenticate()">Войти(fake)</button>
-  </form>
+        <button class="btn btn-primary" (click)="fakeAuthenticate()">Войти(fake)</button>
+    </form>
 </div>

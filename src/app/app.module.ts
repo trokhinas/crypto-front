@@ -17,6 +17,9 @@ import { LectureLinkComponent } from './components/common/courses/lecture/lectur
 import { LectureDetailsComponent } from './components/common/courses/lecture/lecture-details/lecture-details.component';
 import { LectureListComponent } from './components/common/courses/lecture/lecture-list/lecture-list.component';
 import { AlgsMainComponent } from './components/common/algs/algs-main/algs-main.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { ImageComponent } from './components/common/image/image.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { AlgsMainComponent } from './components/common/algs/algs-main/algs-main.
     LectureLinkComponent,
     LectureDetailsComponent,
     LectureListComponent,
-    AlgsMainComponent
+    AlgsMainComponent,
+    HeaderComponent,
+    ImageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

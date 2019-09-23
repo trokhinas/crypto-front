@@ -1,7 +1,33 @@
-<div class="d-flex flex-column">
-  <span [routerLink]="['profile']">Профиль</span>
-  <span [routerLink]="['courses/lectures']">Курсы</span>
-  <span [routerLink]="['tests']">Тесты</span>
-  <span [routerLink]="['algorithms']">Алгоритмы</span>
-  <span [routerLink]="['users']" *ngIf="isAdmin()">Пользователи</span>
+<!--<div class="d-flex flex-column">-->
+  <!--<span [routerLink]="['profile']">Профиль</span>-->
+  <!--<span [routerLink]="['courses/lectures']">Курсы</span>-->
+  <!--<span [routerLink]="['tests']">Тесты</span>-->
+  <!--<span [routerLink]="['algorithms']">Алгоритмы</span>-->
+  <!--<span [routerLink]="['users']" *ngIf="isAdmin()">Пользователи</span>-->
+<!--</div>-->
+
+
+<div class="col-2 left-bar">
+    <nav class="nav flex-column">
+        <a class="nav-link" [routerLink]="['profile']">
+            <app-image [filename]="'profile.svg'"></app-image>
+            Профиль
+        </a>
+        <a class="nav-link" [routerLink]="['courses/lectures']">
+            <app-image [filename]="'course.svg'"></app-image>
+            Курсы
+        </a>
+        <a class="nav-link" [routerLink]="['tests']">
+            <app-image [filename]="'tests.svg'"></app-image>
+            Тесты
+        </a>
+        <a class="nav-link" [routerLink]="['algorithms']">
+            <app-image [filename]="'algo.svg'"></app-image>
+            Алгоритмы
+        </a>
+        <a class="nav-link" [routerLink]="['users']" *ngIf="isAdmin()">
+            <app-image [filename]="'users.svg'"></app-image>
+            Пользователи
+        </a>
+    </nav>
 </div>
