@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LectureLink} from '../../../../common/courses';
-import {fakeLectures} from '../../../../common/fakes';
+import {LectureLink} from '../../../common/courses';
+import {fakeLectures} from '../../../common/fakes';
 
 @Component({
   selector: 'app-courses-main',

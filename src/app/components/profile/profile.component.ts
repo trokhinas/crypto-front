@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../../common/auth';
-import {Roles} from '../../../enums';
-import {AuthService} from '../../../service/auth.service';
+import {User} from '../../common/auth';
+import {Roles} from '../../enums';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-profile',

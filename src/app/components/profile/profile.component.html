@@ -1,0 +1,23 @@
+<h2>{{user.name}} {{user.surname}}</h2>
+<h3>Role: {{role}}</h3>
+
+<div class="row">
+    <div>
+        <mat-grid-list cols="5">
+            <mat-grid-tile>
+                <app-test-grid-tile
+                        [testTitle]="'Тест #1'"
+                        [mark]="4.0"
+                ></app-test-grid-tile>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-test-grid-tile
+                        [testTitle]="'Тест #2'"
+                        [mark]="3.5"
+                ></app-test-grid-tile>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+
+

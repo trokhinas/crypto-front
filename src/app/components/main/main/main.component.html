@@ -1,7 +1,13 @@
-<div class="container-fluid">
-    <div class="row">
-        <app-control-panel [user]="user" [role]="role"></app-control-panel>
-        <router-outlet></router-outlet>
-    </div>
-</div>
+<div class="row">
 
+  <div class="col-2 left-bar">
+    <app-control-panel [user]="user" [role]="role"></app-control-panel>
+  </div>
+
+  <div class="col-8">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="col-2 right-bar"></div>
+
+</div>

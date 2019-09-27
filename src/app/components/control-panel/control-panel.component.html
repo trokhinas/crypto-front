@@ -1,0 +1,27 @@
+
+
+
+
+<nav class="nav flex-column">
+  <a class="nav-link" [routerLink]="['profile']">
+    <app-icon [filename]="'profile.svg'" [height]="22" [width]="22"></app-icon>
+    Профиль
+  </a>
+  <a class="nav-link" [routerLink]="['courses/lectures']">
+    <app-icon [filename]="'course.svg'" [height]="22" [width]="22"></app-icon>
+    Курсы
+  </a>
+  <a class="nav-link" [routerLink]="['tests']">
+    <app-icon [filename]="'tests.svg'" [height]="22" [width]="22"></app-icon>
+    Тесты
+  </a>
+  <a class="nav-link" [routerLink]="['algorithms']">
+    <app-icon [filename]="'algo.svg'" [height]="22" [width]="22"></app-icon>
+    Алгоритмы
+  </a>
+  <a class="nav-link" [routerLink]="['users']" *ngIf="isAdmin()">
+    <app-icon [filename]="'users.svg'" [height]="22" [width]="22"></app-icon>
+    Пользователи
+  </a>
+</nav>
+

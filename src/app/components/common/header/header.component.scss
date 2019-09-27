@@ -1,15 +1,9 @@
-body {
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  background-color: #333333;
-}
-
 header {
   height: 3em;
   width: 100%;
   background-color: #333333;
   position: fixed;
+  z-index: 5000;
 }
 
 nav.navbar{

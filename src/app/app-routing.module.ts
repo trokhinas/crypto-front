@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './components/auth/login/login.component';
 import {MainComponent} from './components/main/main/main.component';
 import {MainGuard} from './guards/main.guard';
-import {ProfileComponent} from './components/common/profile/profile.component';
-import {CoursesMainComponent} from './components/common/courses/courses-main/courses-main.component';
-import {LectureDetailsComponent} from './components/common/courses/lecture/lecture-details/lecture-details.component';
-import {LectureListComponent} from './components/common/courses/lecture/lecture-list/lecture-list.component';
-import {AlgsMainComponent} from './components/common/algs/algs-main/algs-main.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {CoursesMainComponent} from './components/courses/courses-main/courses-main.component';
+import {LectureDetailsComponent} from './components/courses/lecture/lecture-details/lecture-details.component';
+import {LectureListComponent} from './components/courses/lecture/lecture-list/lecture-list.component';
+import {AlgsMainComponent} from './components/algs/algs-main/algs-main.component';
 
 const courseRoutes: Routes = [
     {path: 'lectures', component: LectureListComponent},

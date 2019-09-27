@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../../common/auth';
-import {Roles} from '../../../enums';
+import {User} from '../../common/auth';
+import {Roles} from '../../enums';
 import {Router} from '@angular/router';
 
 @Component({

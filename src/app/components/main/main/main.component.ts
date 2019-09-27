@@ -10,8 +10,8 @@ import {Roles} from '../../../enums';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-    private user: User;
-    private role: Roles;
+    user: User;
+    role: Roles;
     
     constructor(
         private auth: AuthService,
