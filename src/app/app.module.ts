@@ -22,6 +22,9 @@ import {HeaderComponent} from './components/common/header/header.component';
 import {ImageComponent} from './components/common/image/image.component';
 import {FooterComponent} from './components/common/footer/footer.component';
 import {TestGridTileComponent} from './components/profile/test-grid-tile/test-grid-tile.component';
+import { NavigationLinkComponent } from './components/control-panel/navigation-link/navigation-link.component';
+import { TestsComponent } from './components/tests/tests.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 
@@ -40,7 +43,10 @@ import {TestGridTileComponent} from './components/profile/test-grid-tile/test-gr
       HeaderComponent,
       ImageComponent,
       FooterComponent,
-      TestGridTileComponent
+      TestGridTileComponent,
+      NavigationLinkComponent,
+      TestsComponent,
+      UsersComponent
   ],
   imports: [
       BrowserModule,

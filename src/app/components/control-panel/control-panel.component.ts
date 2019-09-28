@@ -3,21 +3,35 @@ import {User} from '../../common/auth';
 import {Roles} from '../../enums';
 import {Router} from '@angular/router';
 
+interface PanelLink {
+    link: string;
+    icon: string;
+    text: string;
+}
+
 @Component({
   selector: 'app-control-panel',
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.scss']
 })
+
 export class ControlPanelComponent implements OnInit {
     @Input() private user: User;
     @Input() private role: Roles;
+
+    links: Array<PanelLink> = [
+        {link: 'profile', icon: 'profile.svg', text: 'Профиль'},
+        {link: 'courses/lectures', icon: 'course.svg', text: 'Курсы'},
+        {link: 'tests', icon: 'tests.svg', text: 'Тесты'},
+        {link: 'algorithms', icon: 'algo.svg', text: 'Алгоритмы'},
+    ];
   
-    constructor(private router: Router) { }
+    constructor() { }
   
     ngOnInit() {
     }
     
-    isAdmin() {
-        return this.role === Roles.ADMIN;
+    isAdminOrTeacher() {
+        return this.role === Roles.ADMIN || this.role === Roles.TEACHER;
     }
 }

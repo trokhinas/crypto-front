@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
+
 import {LoginComponent} from './components/auth/login/login.component';
+
 import {MainComponent} from './components/main/main/main.component';
 import {MainGuard} from './guards/main.guard';
+
 import {ProfileComponent} from './components/profile/profile.component';
 import {CoursesMainComponent} from './components/courses/courses-main/courses-main.component';
+import {AlgsMainComponent} from './components/algs/algs-main/algs-main.component';
+import {TestsComponent} from './components/tests/tests.component';
+import {UsersComponent} from './components/users/users.component';
+
 import {LectureDetailsComponent} from './components/courses/lecture/lecture-details/lecture-details.component';
 import {LectureListComponent} from './components/courses/lecture/lecture-list/lecture-list.component';
-import {AlgsMainComponent} from './components/algs/algs-main/algs-main.component';
 
 const courseRoutes: Routes = [
     {path: 'lectures', component: LectureListComponent},
@@ -22,10 +29,21 @@ const algsRoutes: Routes = [
 
 ];
 
+const testRoutes: Routes = [
+
+];
+
+const userRoutes: Routes = [
+
+];
+
 const mainRoutes: Routes = [
     {path: 'profile', component: ProfileComponent, children: profileRoutes},
     {path: 'courses', component: CoursesMainComponent, children: courseRoutes},
-    {path: 'algorithms', component: AlgsMainComponent, children: algsRoutes}
+    {path: 'algorithms', component: AlgsMainComponent, children: algsRoutes},
+    {path: 'tests', component: TestsComponent, children: testRoutes},
+    // TODO подумать над системой guard для управления юзерами
+    {path: 'users', component: UsersComponent, children: userRoutes, canActivate: []}
 ];
 
 const routes: Routes = [

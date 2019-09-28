@@ -1,0 +1,6 @@
+<a class="nav-link"
+   [ngClass]="{'not-selected-page': isNotCurrentPage(link)}"
+   [routerLink]="[link]">
+  <app-icon [filename]="icon" [height]="22" [width]="22"></app-icon>
+  {{title}}
+</a>
