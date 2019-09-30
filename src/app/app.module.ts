@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import {LoginComponent} from './components/auth/login/login.component';
 import {MainComponent} from './components/main/main/main.component';
@@ -25,6 +26,14 @@ import {TestGridTileComponent} from './components/profile/test-grid-tile/test-gr
 import { NavigationLinkComponent } from './components/control-panel/navigation-link/navigation-link.component';
 import { TestsComponent } from './components/tests/tests.component';
 import { UsersComponent } from './components/users/users.component';
+import { AlgLogsComponent } from './components/algs/common/alg-logs/alg-logs.component';
+import { UserInputComponent } from './components/algs/common/alg-logs/user-input/user-input.component';
+import { SystemOutputComponent } from './components/algs/common/alg-logs/system-output/system-output.component';
+import { AlgListComponent } from './components/algs/common/alg-list/alg-list.component';
+import { Rot13Component } from './components/algs/rot13/rot13.component';
+import { MorseComponent } from './components/algs/morse/morse.component';
+import { AlgHeaderComponent } from './components/algs/common/alg-header/alg-header.component';
+import { AlgControlPanelComponent } from './components/algs/common/alg-control-panel/alg-control-panel.component';
 
 
 
@@ -46,7 +55,15 @@ import { UsersComponent } from './components/users/users.component';
       TestGridTileComponent,
       NavigationLinkComponent,
       TestsComponent,
-      UsersComponent
+      UsersComponent,
+      AlgLogsComponent,
+      UserInputComponent,
+      SystemOutputComponent,
+      AlgListComponent,
+      Rot13Component,
+      MorseComponent,
+      AlgHeaderComponent,
+      AlgControlPanelComponent
   ],
   imports: [
       BrowserModule,
@@ -54,7 +71,8 @@ import { UsersComponent } from './components/users/users.component';
       HttpClientModule,
       RouterModule,
       FormsModule,
-      MatGridListModule
+      MatGridListModule,
+      MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

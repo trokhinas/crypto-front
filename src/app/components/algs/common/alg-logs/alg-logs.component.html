@@ -1,0 +1,7 @@
+<div>
+    <ul class="list-group">
+        <app-user-input *ngFor="let userLog of userLogs" [text]="userLog"></app-user-input>
+        <app-system-output *ngFor="let systemLog of systemLogs" [text]="systemLog"></app-system-output>
+    </ul>
+</div>
+
