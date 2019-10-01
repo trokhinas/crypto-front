@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {PlatformLocation} from '@angular/common';
 
 @Component({
     selector: 'app-alg-header',
@@ -8,10 +9,14 @@ import {Component, Input, OnInit} from '@angular/core';
 export class AlgHeaderComponent implements OnInit {
     @Input()title : string;
     
-    constructor() {
+    constructor(
+        private location: PlatformLocation) {
     }
     
     ngOnInit() {
     }
-    
+
+    back() {
+        this.location.back();
+    }
 }

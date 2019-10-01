@@ -9,6 +9,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 import {LoginComponent} from './components/auth/login/login.component';
 import {MainComponent} from './components/main/main/main.component';
@@ -72,7 +75,10 @@ import { AlgControlPanelComponent } from './components/algs/common/alg-control-p
       RouterModule,
       FormsModule,
       MatGridListModule,
-      MatSlideToggleModule
+      MatSlideToggleModule,
+      MatCheckboxModule,
+      MatButtonModule,
+      MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

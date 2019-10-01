@@ -17,3 +17,14 @@
 .badge {
   color: #828282;
 }
+
+.element::-webkit-scrollbar { width: 0; }
+
+.chat::-webkit-scrollbar {
+  display: none;
+}
+
+.chat {
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
+}

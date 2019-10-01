@@ -4,17 +4,18 @@
         <app-icon [filename]="'delete.svg'" [width]="80" [height]="50"></app-icon>
     </button>
 
-    <button type="button" class="btn col-3">
-        <app-icon [filename]="'code-decode.svg'" [width]="80" [height]="50"></app-icon>
-    </button>
+    <mat-slide-toggle [color]="'accent'"
+            (toggleChange)="onToggle()"
+            [checked]="isEncrypt()"
+    >{{mode && mode.toString()}}</mat-slide-toggle>
 
     <input type="text" class="col-6 rounded-pill" [(ngModel)]="input">
 
-    <button type="button" class="btn col-3" (click)="send.emit(input)">
+    <button type="button" class="btn col-3" (click)="emitSend()">
         <app-icon [filename]="'send.svg'" [width]="80" [height]="50"></app-icon>
     </button>
 
-    <button type="button" class="btn col-3">
+    <button type="button" class="btn col-3" (click)="emitPartitionSend()">
         <app-icon [filename]="'step-by-step.svg'" [width]="80" [height]="50"></app-icon>
     </button>
 </div>

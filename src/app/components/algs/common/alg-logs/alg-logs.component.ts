@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {LogsService} from '../../../../service/algs/common/logs.service';
+import {StageData} from '../../../../common/algs';
 
 @Component({
     selector: 'app-alg-logs',
@@ -8,10 +10,27 @@ import {Component, Input, OnInit} from '@angular/core';
 export class AlgLogsComponent implements OnInit {
     @Input() private userLogs: Array<String>;
     @Input() private systemLogs: Array<String>;
-    
-    constructor() {
+    @ViewChild('logs') private logs: ElementRef;
+
+    private logMapper = (stageData: StageData): string => {
+        return `${stageData.message}: ${stageData.data}`;
+    };
+
+    constructor(
+        private logsService: LogsService) {
     }
     
     ngOnInit() {
+        this.logsService.userLogs.subscribe(logs => {
+            this.userLogs = logs && logs.map(this.logMapper);
+            this.scrollToTop();
+        });
+        this.logsService.systemLogs.subscribe(logs => {
+            this.systemLogs = logs && logs.map(this.logMapper);
+        });
+    }
+
+    scrollToTop() {
+        this.logs.nativeElement.scrollTo(0, 0);
     }
 }
