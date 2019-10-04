@@ -11,4 +11,4 @@ export const fakeLectures: Array<LectureLink> = [
 export const fakeTestLinks: Array<TestLink> = [
     {title: 'Тест #1', mark: 4.0},
     {title: 'Тест #2', mark: 3.5},
-]
+];

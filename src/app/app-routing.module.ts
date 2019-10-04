@@ -15,8 +15,7 @@ import {UsersComponent} from './components/users/users.component';
 
 import {LectureDetailsComponent} from './components/courses/lecture/lecture-details/lecture-details.component';
 import {LectureListComponent} from './components/courses/lecture/lecture-list/lecture-list.component';
-import {Rot13Component} from './components/algs/rot13/rot13.component';
-import {MorseComponent} from './components/algs/morse/morse.component';
+import {AlgorithmComponent} from './components/algs/algorithm/algorithm.component';
 
 const courseRoutes: Routes = [
     {path: 'lectures', component: LectureListComponent},
@@ -44,8 +43,7 @@ const mainRoutes: Routes = [
     {path: 'users', component: UsersComponent, children: userRoutes, canActivate: []},
     
     //algorithms routes
-    {path: 'algorithms/rot-13', component: Rot13Component},
-    {path: 'algorithms/morse', component: MorseComponent},
+    {path: 'algorithms/:algorithmBaseUrl', component: AlgorithmComponent}
 ];
 
 const routes: Routes = [

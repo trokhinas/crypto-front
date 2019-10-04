@@ -1,15 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BlocksResponse} from '../../../../common/algs/blocks';
 import {AlgsModes} from '../../../../enums/algs';
 
 @Component({
-    selector: 'control-panel',
+    selector: 'alg-control-panel',
     templateUrl: './control-panel.component.html',
     styleUrls: ['./control-panel.component.scss']
 })
 export class ControlPanelComponent implements OnInit {
 
     @Input('blocks') private blocksResponse: BlocksResponse;
+    @Output('onEncrypt') private encryptEmitter = new EventEmitter();
+    @Output('onGenKeys') private genKeysEmitter = new EventEmitter();
+    @Output('onStart') private startEmitter = new EventEmitter();
+
     private mode: AlgsModes;
 
     constructor() {
@@ -31,5 +35,9 @@ export class ControlPanelComponent implements OnInit {
 
     isEncrypt() {
         return this.mode === AlgsModes.ENCRYPT;
+    }
+
+    clickStart() {
+
     }
 }

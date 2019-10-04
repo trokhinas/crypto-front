@@ -4,11 +4,11 @@
     <input  [(ngModel)]="block.value" [value]="block.value">
   </label>
 
-  <button *ngIf="blocksResponse.withKeysGeneration">generate keys</button>
-  <button *ngIf="blocksResponse.withStart">start</button>
+  <button *ngIf="blocksResponse.withKeysGeneration" (click)="clickGenerate()">generate keys</button>
+  <button *ngIf="blocksResponse.withStart" (click)="clickStart()">start</button>
   <div *ngIf="blocksResponse.withEncrypt">
-    <button (click)="click()"> encrypt </button>
-    <button (click)="click()"> decrypt </button>
+    <button (click)="clickEncrypt()"> encrypt </button>
+    <button (click)="clickDecrypt()"> decrypt </button>
     <mat-slide-toggle [color]="'accent'"
                       (toggleChange)="onToggle()"
                       [checked]="isEncrypt()"

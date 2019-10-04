@@ -8,8 +8,8 @@ import {StageData} from '../../../../common/algs';
     styleUrls: ['./alg-logs.component.scss']
 })
 export class AlgLogsComponent implements OnInit {
-    @Input() private userLogs: Array<String>;
-    @Input() private systemLogs: Array<String>;
+    private userLogs: Array<String>;
+    private systemLogs: Array<String>;
     @ViewChild('logs') private logs: ElementRef;
 
     private logMapper = (stageData: StageData): string => {
