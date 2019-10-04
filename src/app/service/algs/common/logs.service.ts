@@ -20,6 +20,11 @@ export class LogsService {
         this.userLogs = this.userLogsSubject.asObservable();
         this.systemLogs = this.systemLogsSubject.asObservable();
     }
+    
+    clearLogs() {
+        this.userLogsSubject.next([]);
+        this.systemLogsSubject.next([]);
+    }
 
     updateLogs(systemLogs: Array<StageData>, userLogs: Array<StageData>) {
         this.systemLogsSubject.next(systemLogs);
@@ -42,6 +47,10 @@ export class LogsService {
         result.push(this.getResultMessage(partitionData.result));
 
         this.systemLogsSubject.next(result);
+    }
+    
+    updateSystemLogsWithError(error: string) {
+        this.systemLogsSubject.next([{message: 'Произошла ошибка', data: error}]);
     }
 
     private getResultMessage(result: string): StageData {

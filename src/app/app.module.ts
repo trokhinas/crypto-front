@@ -11,7 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 import {LoginComponent} from './components/auth/login/login.component';
 import {MainComponent} from './components/main/main/main.component';
@@ -36,6 +38,7 @@ import { AlgListComponent } from './components/algs/common/alg-list/alg-list.com
 import { AlgHeaderComponent } from './components/algs/common/alg-header/alg-header.component';
 import { ControlPanelComponent as AlgsControl} from './components/algs/common/control-panel/control-panel.component';
 import { AlgorithmComponent } from './components/algs/algorithm/algorithm.component';
+import { SpinnerComponent } from './common/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,8 @@ import { AlgorithmComponent } from './components/algs/algorithm/algorithm.compon
       AlgListComponent,
       AlgHeaderComponent,
       AlgsControl,
-      AlgorithmComponent
+      AlgorithmComponent,
+      SpinnerComponent
   ],
   imports: [
       BrowserModule,
@@ -74,7 +78,8 @@ import { AlgorithmComponent } from './components/algs/algorithm/algorithm.compon
       MatSlideToggleModule,
       MatCheckboxModule,
       MatButtonModule,
-      MatIconModule
+      MatIconModule,
+      MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,12 @@
-<app-alg-header [title]="title"></app-alg-header>
-<app-alg-logs></app-alg-logs>
-<alg-control-panel [blocks]="blocks"></alg-control-panel>
+<div *ngIf="blocks">
+    <app-alg-header [title]="title"></app-alg-header>
+    <app-alg-logs></app-alg-logs>
+    <alg-control-panel
+            [blocks]="blocks"
+            (onEncrypt)="handleEncrypt($event)"
+            (onStart)="handleStart($event)"
+            (onGenKeys)="handleGenKeys()"
+            (onCode)="handleCode($event)"
+    ></alg-control-panel>
+</div>
+<app-spinner [text]="'Загрузка блоков'" *ngIf="!blocks"></app-spinner>

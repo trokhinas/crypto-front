@@ -3,6 +3,7 @@ export interface BlocksResponse {
     withKeysGeneration: boolean;
     withStart: boolean;
     withEncrypt: boolean;
+    withEncode: boolean;
 }
 
 export interface ControlPanelBlock {

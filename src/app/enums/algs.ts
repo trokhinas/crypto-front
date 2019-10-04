@@ -6,7 +6,7 @@ export enum AlgsModes {
 export enum AlgorithmCommands {
     ENCRYPT = 'encrypt',
     DECRYPT = 'decrypt',
-    CODE = 'code',
+    CODE = 'encode',
     DECODE = 'decode',
     HASH = 'hash',
     GEN_KEYS = 'keys',

@@ -1,16 +1,23 @@
 <div *ngIf="blocksResponse">
-  <label *ngFor="let block of blocksResponse.blocks">
-    <span>{{block.name}}</span>
-    <input  [(ngModel)]="block.value" [value]="block.value">
-  </label>
+    <label *ngFor="let block of blocksResponse.blocks">
+        <span>{{block.name}}</span>
+        <input [(ngModel)]="block.value" [value]="block.value">
+    </label>
 
-  <button *ngIf="blocksResponse.withKeysGeneration" (click)="clickGenerate()">generate keys</button>
-  <button *ngIf="blocksResponse.withStart" (click)="clickStart()">start</button>
-  <div *ngIf="blocksResponse.withEncrypt">
-    <button (click)="clickEncrypt()"> encrypt </button>
-    <button (click)="clickDecrypt()"> decrypt </button>
-    <mat-slide-toggle [color]="'accent'"
-                      (toggleChange)="onToggle()"
-                      [checked]="isEncrypt()"
-    >{{mode && mode.toString()}}</mat-slide-toggle>  </div>
+    <button *ngIf="blocksResponse.withKeysGeneration" (click)="clickGenerate()">generate keys</button>
+    <button *ngIf="blocksResponse.withStart" (click)="clickStart()">start</button>
+    <div *ngIf="blocksResponse.withEncrypt">
+        <button (click)="clickEncrypt()"> {{mode && mode.toString()}} </button>
+        <mat-slide-toggle [color]="'accent'"
+                          (toggleChange)="onToggle()"
+                          [checked]="isEncrypt()"
+        ></mat-slide-toggle>
+    </div>
+    <div *ngIf="blocksResponse.withEncode">
+        <button (click)="clickCode()"> {{mode && mode.toString()}} </button>
+        <mat-slide-toggle [color]="'accent'"
+                          (toggleChange)="onToggle()"
+                          [checked]="isEncrypt()"
+        ></mat-slide-toggle>
+    </div>
 </div>
