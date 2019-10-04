@@ -2,8 +2,7 @@
 
 <app-alg-logs></app-alg-logs>
 
-<app-alg-control-panel
-        (onSend)="handleSend($event)"
-        (onPartitionSend)="handleSendWithPartition($event)"
-></app-alg-control-panel>
+<control-panel
+    [blocks]="blocks"
+></control-panel>
 

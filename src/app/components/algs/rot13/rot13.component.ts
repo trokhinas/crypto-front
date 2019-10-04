@@ -3,6 +3,7 @@ import {Rot13Service} from '../../../service/algs/rot13.service';
 import {ResponseStatus} from '../../../enums';
 import {LogsService} from '../../../service/algs/common/logs.service';
 import {AlgStartData} from '../common/alg-control-panel/alg-control-panel.component';
+import {BlocksResponse} from '../../../common/algs/blocks';
 
 @Component({
     selector: 'app-rot13',
@@ -12,6 +13,7 @@ import {AlgStartData} from '../common/alg-control-panel/alg-control-panel.compon
 })
 export class Rot13Component implements OnInit {
     title = 'Rot-13';
+    blocks: BlocksResponse;
     
     constructor(
         private rot13: Rot13Service,
@@ -19,18 +21,30 @@ export class Rot13Component implements OnInit {
     }
     
     ngOnInit() {
+        this.rot13.loadBlocks().subscribe(
+            response => {
+                if (response.status === ResponseStatus.OK) {
+                    this.blocks = response.data;
+                } else {
+                    alert(response.message);
+                }
+            },
+            error1 => {
+                throw error1;
+            }
+        );
     }
 
-    handleSend(data : AlgStartData) {
+    handleSend(data: AlgStartData) {
         const {input, isEncrypt, isStaging} = data;
         if (input === '' || input === null) {
-            alert("Сообщение пустое!");
+            alert('Сообщение пустое!');
             return;
         }
         this.logsService.updateUserLogs(input, isEncrypt);
         console.log(`send ${input} with isEncrypt ${isEncrypt}`);
         this.rot13.send(input, isEncrypt, isStaging).subscribe(response => {
-             if (response.status == ResponseStatus.OK) {
+             if (response.status === ResponseStatus.OK) {
                  this.logsService.updateSystemLogsWithResult(response.data);
              }
              else {

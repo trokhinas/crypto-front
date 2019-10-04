@@ -37,8 +37,7 @@ import { Rot13Component } from './components/algs/rot13/rot13.component';
 import { MorseComponent } from './components/algs/morse/morse.component';
 import { AlgHeaderComponent } from './components/algs/common/alg-header/alg-header.component';
 import { AlgControlPanelComponent } from './components/algs/common/alg-control-panel/alg-control-panel.component';
-
-
+import { ControlPanelComponent as AlgsControl} from './components/algs/common/control-panel/control-panel.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +65,8 @@ import { AlgControlPanelComponent } from './components/algs/common/alg-control-p
       Rot13Component,
       MorseComponent,
       AlgHeaderComponent,
-      AlgControlPanelComponent
+      AlgControlPanelComponent,
+      AlgsControl
   ],
   imports: [
       BrowserModule,

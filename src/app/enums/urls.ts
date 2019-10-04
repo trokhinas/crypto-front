@@ -5,4 +5,5 @@ export enum Urls {
 
   ROT13_ENCRYPT = 'api/rot-13/encrypt',
   ROT13_DECRYPT = 'api/rot-13/decrypt',
+  ROT13_BLOCKS = 'api/table-transposition/blocks'
 }

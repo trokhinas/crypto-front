@@ -15,7 +15,6 @@ import {UsersComponent} from './components/users/users.component';
 
 import {LectureDetailsComponent} from './components/courses/lecture/lecture-details/lecture-details.component';
 import {LectureListComponent} from './components/courses/lecture/lecture-list/lecture-list.component';
-import {AlgListComponent} from './components/algs/common/alg-list/alg-list.component';
 import {Rot13Component} from './components/algs/rot13/rot13.component';
 import {MorseComponent} from './components/algs/morse/morse.component';
 
@@ -44,7 +43,7 @@ const mainRoutes: Routes = [
     // TODO подумать над системой guard для управления юзерами
     {path: 'users', component: UsersComponent, children: userRoutes, canActivate: []},
     
-    //algs routes
+    //algorithms routes
     {path: 'algorithms/rot-13', component: Rot13Component},
     {path: 'algorithms/morse', component: MorseComponent},
 ];

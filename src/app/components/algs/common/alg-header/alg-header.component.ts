@@ -7,7 +7,7 @@ import {PlatformLocation} from '@angular/common';
     styleUrls: ['./alg-header.component.scss']
 })
 export class AlgHeaderComponent implements OnInit {
-    @Input()title : string;
+    @Input()title: string;
     
     constructor(
         private location: PlatformLocation) {
