@@ -1,36 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {LogsService} from '../../../service/algs/common/logs.service';
-import {AlgorithmService} from '../../../algs/algorithm.service';
+import {AlgorithmService} from '../../../service/algs/algorithm.service';
 import {BlocksResponse} from '../../../common/algs/blocks';
-import {MyResponse} from '../../../common';
-import {ResponseStatus} from '../../../enums';
-import {ControlPanelEvent, PartitionData} from '../../../common/algs';
+import {ControlPanelEvent} from '../../../common/algs';
 import {AlgorithmCommands} from '../../../enums/algs';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-algorithm',
     templateUrl: './algorithm.component.html',
     styleUrls: ['./algorithm.component.scss']
 })
-export class AlgorithmComponent implements OnInit {
+export class AlgorithmComponent implements OnInit, OnDestroy {
 
     title: string;
     blocks: BlocksResponse;
-    private stagingHandler = (response: MyResponse<PartitionData>) => {
-        if (response.status === ResponseStatus.OK) {
-            this.logs.updateSystemLogs(response.data);
-        } else {
-            this.logs.updateSystemLogsWithError(response.message);
-        }
-    };
-    private defaultHandler = (response: MyResponse<string>) => {
-        if (response.status === ResponseStatus.OK) {
-            this.logs.updateSystemLogsWithResult(response.data);
-        } else {
-            this.logs.updateSystemLogsWithError(response.message);
-        }
-    };
 
     constructor(
         private route: ActivatedRoute,
@@ -39,25 +24,23 @@ export class AlgorithmComponent implements OnInit {
     }
 
     ngOnInit() {
-        const blockResponseHandler = (response: MyResponse<BlocksResponse>) => {
-            if (response.status === ResponseStatus.OK) {
-                this.blocks = response.data;
-            } else {
-                alert(response.message);
-            }
-        };
-        this.route.params.subscribe(
-            params => {
-                this.title = params['urlBase'];
-                console.log(this.title);
-                this.algService.setUrl(this.title);
-                this.algService.getBlocks().subscribe(blockResponseHandler);
-            }
-        );
+        this.route.params.pipe(map(
+                params => params['urlBase']
+            ))
+            .subscribe(url => {
+                this.title = url;
+                this.algService.setUrl(url);
+                this.algService.getBlocks().subscribe(data => this.blocks = data);
+            });
+    }
+    
+    ngOnDestroy(){
+        this.logs.clearLogs();
     }
     
     handleEncrypt(event: ControlPanelEvent) {
-    
+        const command = event.isEncrypt ? AlgorithmCommands.ENCRYPT: AlgorithmCommands.DECRYPT;
+        this.startAlgorithm(event, command);
     }
     
     handleStart(event: ControlPanelEvent) {
@@ -70,10 +53,21 @@ export class AlgorithmComponent implements OnInit {
     
     handleCode(event: ControlPanelEvent) {
         const command = event.isEncrypt ? AlgorithmCommands.CODE: AlgorithmCommands.DECODE;
-        const input = event.blocks.find(x => x.id === 'text').value;
-        this.logs.updateUserLogs(input, event.isEncrypt);
+        this.startAlgorithm(event, command);
+    }
+    
+    private startAlgorithm(event: ControlPanelEvent, command: AlgorithmCommands) {
+        const input = event.blocks['text'].value;
+        this.logs.updateUserLogs(input);
         this.algService
             .startAlgorithm(event.blocks, command, event.isStaging)
-            .subscribe(event.isStaging ? this.stagingHandler : this.defaultHandler);
+            .subscribe(resp => {
+                if (resp.error) {
+                    this.logs.updateSystemLogsWithError(resp.data);
+                }
+                else {
+                    resp.isStaging ? this.logs.updateSystemLogs(resp.data) : this.logs.updateSystemLogsWithResult(resp.data);
+                }
+            });
     }
 }

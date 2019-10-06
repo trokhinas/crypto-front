@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {BlocksResponse} from '../../../../common/algs/blocks';
-import {AlgsModes} from '../../../../enums/algs';
+import {BlocksResponse, ControlPanelBlock} from '../../../../common/algs/blocks';
 import {ControlPanelEvent} from '../../../../common/algs';
+import {Mode} from '../../../../common/algs/mode';
 
 @Component({
     selector: 'alg-control-panel',
@@ -11,30 +11,35 @@ import {ControlPanelEvent} from '../../../../common/algs';
 export class ControlPanelComponent implements OnInit {
 
     @Input('blocks') blocksResponse: BlocksResponse;
+    blocks: [ControlPanelBlock];
+    
     @Output('onEncrypt') private encryptEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onStart') private startEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onCode') private codeEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onGenKeys') private genKeysEmitter = new EventEmitter();
 
-    mode: AlgsModes;
+    mode: Mode;
+    isStaging: boolean;
 
     constructor() {
     }
 
     ngOnInit() {
-        this.mode = AlgsModes.ENCRYPT;
+        this.mode = new Mode(true);
+        this.isStaging = false;
+        this.blocks = this.blocksResponse.blocks;
     }
 
     onToggle() {
-        this.mode = this.mode === AlgsModes.ENCRYPT ? AlgsModes.DECRYPT : AlgsModes.ENCRYPT;
+        this.mode.change();
     }
-
-    isEncrypt() {
-        return this.mode === AlgsModes.ENCRYPT;
+    
+    onChangeStaging() {
+        this.isStaging = !this.isStaging;
     }
 
     clickStart() {
-        this.startEmitter.emit(this.generateEvenetPayload());
+        this.startEmitter.emit(this.generateEventPayload());
     }
     
     clickGenerate() {
@@ -42,18 +47,18 @@ export class ControlPanelComponent implements OnInit {
     }
     
     clickEncrypt() {
-        this.encryptEmitter.emit(this.generateEvenetPayload());
+        this.encryptEmitter.emit(this.generateEventPayload());
     }
     
     clickCode() {
-        this.codeEmitter.emit(this.generateEvenetPayload());
+        this.codeEmitter.emit(this.generateEventPayload());
     }
     
-    private generateEvenetPayload(): ControlPanelEvent {
+    private generateEventPayload(): ControlPanelEvent {
         return {
             blocks: this.blocksResponse.blocks,
-            isEncrypt: this.isEncrypt(),
-            isStaging: false
+            isEncrypt: this.mode.value(),
+            isStaging: this.isStaging
         };
     }
 }

@@ -50,8 +50,8 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'main', component: MainComponent, canActivate: [MainGuard], children: mainRoutes},
     // special routes
-    {path: '', redirectTo: 'main', pathMatch: 'full'},
-    {path: '**', redirectTo: 'main', pathMatch: 'full'}
+    {path: '', redirectTo: 'main/profile', pathMatch: 'full'},
+    {path: '**', redirectTo: 'main/profile', pathMatch: 'full'}
 ];
 
 @NgModule({

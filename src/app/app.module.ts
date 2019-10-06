@@ -38,7 +38,7 @@ import { AlgListComponent } from './components/algs/common/alg-list/alg-list.com
 import { AlgHeaderComponent } from './components/algs/common/alg-header/alg-header.component';
 import { ControlPanelComponent as AlgsControl} from './components/algs/common/control-panel/control-panel.component';
 import { AlgorithmComponent } from './components/algs/algorithm/algorithm.component';
-import { SpinnerComponent } from './common/spinner/spinner.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [

@@ -1,5 +1,6 @@
 export interface BlocksResponse {
     blocks: [ControlPanelBlock];
+    ids: Set<string>;
     withKeysGeneration: boolean;
     withStart: boolean;
     withEncrypt: boolean;

@@ -31,7 +31,7 @@ export class LogsService {
         this.userLogsSubject.next(userLogs);
     }
 
-    updateUserLogs(input: string, isEncrypt: boolean) {
+    updateUserLogs(input: string) {
         this.userLogsSubject.next([this.getStartMessage(input)]);
     }
 
@@ -55,12 +55,12 @@ export class LogsService {
 
     private getResultMessage(result: string): StageData {
         const message = `Результируемое сообщение`;
-        return {message: message, data: result};
+        return {message: message, data: `[${result}]`};
     }
 
     private getStartMessage(input: string): StageData {
         const result = new Array<StageData>();
         const message = `Обрабатывается сообщение`;
-        return {message: message, data: input};
+        return {message: message, data: `[${input}]`};
     }
 }

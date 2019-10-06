@@ -1,9 +1,13 @@
 <div class="list-group-flush">
     <a class="list-group-item list-group-item-action"
-       [routerLink]="['rot-13', {urlBase: 'rot13'}]"
+       [routerLink]="['rot-13', {urlBase: 'rot-13'}]"
     >ROT-13</a>
 
     <a class="list-group-item list-group-item-action"
        [routerLink]="['morse', {urlBase: 'morse'}]"
     >Морзе</a>
+
+    <a class="list-group-item list-group-item-action"
+       [routerLink]="['table-transposition', {urlBase: 'table-transposition'}]"
+    >Табличная перестановка</a>
 </div>

@@ -13,7 +13,7 @@ export class AlgLogsComponent implements OnInit {
     @ViewChild('logs') private logs: ElementRef;
 
     private logMapper = (stageData: StageData): string => {
-        return `${stageData.message}: ${stageData.data}`;
+        return stageData.data ? `${stageData.message} : ${stageData.data }` : stageData.message;
     };
 
     constructor(

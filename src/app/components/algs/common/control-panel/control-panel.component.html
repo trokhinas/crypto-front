@@ -1,23 +1,35 @@
 <div *ngIf="blocksResponse">
-    <label *ngFor="let block of blocksResponse.blocks">
-        <span>{{block.name}}</span>
-        <input [(ngModel)]="block.value" [value]="block.value">
-    </label>
+    <div *ngFor="let id of blocksResponse.ids">
+        <label>
+            <span>{{blocks[id].name}}</span>
+            <textarea [(ngModel)]="blocks[id].value" [value]="blocks[id].value"></textarea>
+        </label>
+    </div>
+
 
     <button *ngIf="blocksResponse.withKeysGeneration" (click)="clickGenerate()">generate keys</button>
     <button *ngIf="blocksResponse.withStart" (click)="clickStart()">start</button>
+
     <div *ngIf="blocksResponse.withEncrypt">
-        <button (click)="clickEncrypt()"> {{mode && mode.toString()}} </button>
+        <button (click)="clickEncrypt()"> {{mode && mode.toEncrypt()}} </button>
         <mat-slide-toggle [color]="'accent'"
                           (toggleChange)="onToggle()"
-                          [checked]="isEncrypt()"
+                          [checked]="mode.value()"
         ></mat-slide-toggle>
     </div>
+
     <div *ngIf="blocksResponse.withEncode">
-        <button (click)="clickCode()"> {{mode && mode.toString()}} </button>
+        <button (click)="clickCode()"> {{mode && mode.toEncode()}} </button>
         <mat-slide-toggle [color]="'accent'"
                           (toggleChange)="onToggle()"
-                          [checked]="isEncrypt()"
+                          [checked]="mode.value()"
         ></mat-slide-toggle>
     </div>
+
+    <mat-slide-toggle [color]="'accent'"
+                      (toggleChange)="onChangeStaging()"
+                      [checked]="isStaging"
+    >
+        {{isStaging ? 'По шагам' : 'Результат'}}
+    </mat-slide-toggle>
 </div>
