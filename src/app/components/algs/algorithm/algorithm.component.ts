@@ -24,7 +24,8 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.route.params.pipe(map(
+        this.route.params
+            .pipe(map(
                 params => params['urlBase']
             ))
             .subscribe(url => {
