@@ -17,12 +17,4 @@ export class AlgsMainComponent implements OnInit {
     
     ngOnInit() {
     }
-    
-    isMain() {
-        return this.router.url.endsWith("algorithms");
-    }
-    
-    back() {
-        this.location.back();
-    }
 }

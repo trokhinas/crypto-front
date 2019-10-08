@@ -29,7 +29,7 @@ import {ImageComponent} from './components/common/image/image.component';
 import {FooterComponent} from './components/common/footer/footer.component';
 import {TestGridTileComponent} from './components/profile/test-grid-tile/test-grid-tile.component';
 import { NavigationLinkComponent } from './components/control-panel/navigation-link/navigation-link.component';
-import { TestsComponent } from './components/tests/tests.component';
+import { TestsMainComponent } from './components/tests/tests-main.component';
 import { UsersComponent } from './components/users/users.component';
 import { AlgLogsComponent } from './components/algs/common/alg-logs/alg-logs.component';
 import { UserInputComponent } from './components/algs/common/alg-logs/user-input/user-input.component';
@@ -39,6 +39,12 @@ import { AlgHeaderComponent } from './components/algs/common/alg-header/alg-head
 import { ControlPanelComponent as AlgsControl} from './components/algs/common/control-panel/control-panel.component';
 import { AlgorithmComponent } from './components/algs/algorithm/algorithm.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ProfileDataComponent } from './components/profile/profile-data/profile-data.component';
+import { TestDetailsComponent } from './components/tests/test-details/test-details.component';
+import { TestListComponent } from './components/tests/test-list/test-list.component';
+import { SelectTaskComponent } from './components/tests/test-details/tasks/select-task/select-task.component';
+import { MultiselectTaskComponent } from './components/tests/test-details/tasks/multiselect-task/multiselect-task.component';
+import { InputTaskComponent } from './components/tests/test-details/tasks/input-task/input-task.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
       FooterComponent,
       TestGridTileComponent,
       NavigationLinkComponent,
-      TestsComponent,
+      TestsMainComponent,
       UsersComponent,
       AlgLogsComponent,
       UserInputComponent,
@@ -66,7 +72,13 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
       AlgHeaderComponent,
       AlgsControl,
       AlgorithmComponent,
-      SpinnerComponent
+      SpinnerComponent,
+      ProfileDataComponent,
+      TestDetailsComponent,
+      TestListComponent,
+      SelectTaskComponent,
+      MultiselectTaskComponent,
+      InputTaskComponent,
   ],
   imports: [
       BrowserModule,

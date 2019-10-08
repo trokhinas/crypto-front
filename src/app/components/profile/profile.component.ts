@@ -14,8 +14,6 @@ export class ProfileComponent implements OnInit {
     user: User;
     role: Roles;
 
-    testLinks: Array<TestLink>;
-
     constructor(private auth: AuthService) { }
     
     ngOnInit() {
@@ -23,7 +21,6 @@ export class ProfileComponent implements OnInit {
             this.user = data.user;
             this.role = data.role;
         });
-        this.testLinks = fakeTestLinks;
     }
 
 }

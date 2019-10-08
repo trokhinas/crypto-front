@@ -1,0 +1,13 @@
+<div class="row" *ngIf="isStudent()">
+    <div class="col-2" *ngFor="let link of testLinks">
+        <app-test-grid-tile
+                [testTitle]="link.title"
+                [mark]="link.mark"
+                (click)="redirectToTest(link.id)"
+        ></app-test-grid-tile>
+    </div>
+</div>
+
+<div *ngIf="isTeacher()">
+    <a [routerLink]="['/main/courses/lectures']">Курсы</a>
+</div>

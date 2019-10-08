@@ -22,7 +22,7 @@ export class ControlPanelComponent implements OnInit {
     links: Array<PanelLink> = [
         {link: 'profile', icon: 'profile.svg', text: 'Профиль'},
         {link: 'courses/lectures', icon: 'course.svg', text: 'Курсы'},
-        {link: 'tests', icon: 'tests.svg', text: 'Тесты'},
+        {link: 'tests/list', icon: 'tests.svg', text: 'Тесты'},
         {link: 'algorithms', icon: 'algo.svg', text: 'Алгоритмы'},
     ];
   

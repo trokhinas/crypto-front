@@ -1,4 +1,5 @@
 export interface TestLink {
+    id: number;
     title: string;
-    mark: number;
+    mark: string;
 }

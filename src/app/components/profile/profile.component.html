@@ -1,12 +1,8 @@
 <h2>{{user.name}} {{user.surname}}</h2>
 <h3>Role: {{role}}</h3>
 
-<div class="row">
-    <div class="col-2" *ngFor="let link of testLinks">
-        <app-test-grid-tile
-                [testTitle]="link.title"
-                [mark]="link.mark"
-        ></app-test-grid-tile>
-    </div>
-</div>
+<app-profile-data
+        [user]="user"
+        [role]="role"
+></app-profile-data>
 

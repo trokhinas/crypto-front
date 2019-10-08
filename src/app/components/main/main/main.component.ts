@@ -17,13 +17,17 @@ export class MainComponent implements OnInit {
         private auth: AuthService,
         private router: Router) {
        
-        this.auth.currentUserData.subscribe(data => {
-            this.user = data.user;
-            this.role = data.role;
-        });
+
     }
 
     ngOnInit() {
+        this.auth.currentUserData.subscribe(data => {
+            this.user = data.user;
+            this.role = data.role;
+            if (this.user && this.role) {
+                this.router.navigate(['profile']);
+            }
+        });
     }
     
     logout() {

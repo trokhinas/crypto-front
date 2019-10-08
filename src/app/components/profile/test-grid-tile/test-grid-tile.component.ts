@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TestGridTileComponent implements OnInit {
     @Input() testTitle: string;
-    @Input() mark: number;
+    @Input() mark: string;
 
     constructor() { }
 
