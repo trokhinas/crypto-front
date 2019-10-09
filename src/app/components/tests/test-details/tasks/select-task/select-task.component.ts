@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {TestTask} from '../../../../../common/tests/tests';
+import {Component, Input, OnInit} from '@angular/core';
+import {TaskBlock, TestTask} from '../../../../../common/tests/tests';
 
 @Component({
     selector: 'app-select-task',
@@ -8,12 +8,14 @@ import {TestTask} from '../../../../../common/tests/tests';
 })
 export class SelectTaskComponent implements OnInit {
 
+    @Input() block: TaskBlock;
     task: TestTask;
 
     constructor() {
     }
 
     ngOnInit() {
+        this.task = this.block.task;
     }
 
 }

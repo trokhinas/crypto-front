@@ -1,3 +1,13 @@
-<p>
-  select-task works!
-</p>
+<div>
+    <h3>Выберите верный вариант ответа</h3>
+    <span>{{task.question.text}}</span>
+    <div class="flex-column">
+        <label *ngFor="let answer of task.question.answers">
+            <input
+                    type="radio"
+                    [value]="answer.answerId"
+            >
+            {{answer.text}}
+        </label>
+    </div>
+</div>

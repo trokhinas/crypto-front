@@ -1,4 +1,7 @@
-<p>
-  input-task works!
-  {{task.question}}
-</p>
+<div>
+    <span>Введите ответ</span>
+    <label>
+        {{task.question}}
+        <input [(ngModel)]="block.value">
+    </label>
+</div>

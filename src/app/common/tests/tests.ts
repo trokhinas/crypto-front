@@ -22,3 +22,8 @@ export interface Test {
     testId: number;
     tasks: Array<TestTask>;
 }
+
+export interface TaskBlock {
+    task: TestTask;
+    value: any;
+}
