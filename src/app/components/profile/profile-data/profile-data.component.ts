@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Roles} from '../../../enums';
 import {User} from '../../../common/auth';
 import {TestLink} from '../../../common/tests';
-import {fakeTestLinks} from '../../../common/fakes';
 import {Router} from '@angular/router';
+import {ProfileService} from '../../../service/profile/profile.service';
 
 @Component({
     selector: 'app-profile-data',
@@ -17,11 +17,12 @@ export class ProfileDataComponent implements OnInit {
     testLinks: Array<TestLink>;
 
     constructor(
-        private router: Router) {
+        private router: Router,
+        private dataService: ProfileService) {
     }
 
     ngOnInit() {
-        this.testLinks = fakeTestLinks;
+        this.dataService.loadData().subscribe(data => this.testLinks = data);
     }
 
     isStudent() {
