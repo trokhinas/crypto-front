@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../common/auth';
 import {Roles} from '../../enums';
 import {AuthService} from '../../service/auth.service';
-import {TestLink} from '../../common/tests';
-import {fakeTestLinks} from '../../common/fakes';
 
 @Component({
   selector: 'app-profile',

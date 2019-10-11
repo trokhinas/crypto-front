@@ -22,7 +22,9 @@ export class ProfileDataComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dataService.loadData().subscribe(data => this.testLinks = data);
+        if (this.role === Roles.USER) {
+            this.dataService.loadData().subscribe(data => this.testLinks = data);
+        }
     }
 
     isStudent() {

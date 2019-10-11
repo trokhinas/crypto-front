@@ -17,9 +17,6 @@ export class ProfileService {
     }
 
     loadData() {
-        if (this.globalData.role() !== Roles.USER) {
-            return;
-        }
         const url = Urls.PROFILE_DATA;
         const userId = this.globalData.user().id.toString();
         const params = new HttpParams().set('userId', userId);

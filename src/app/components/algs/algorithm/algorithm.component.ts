@@ -67,7 +67,9 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
                     this.logs.updateSystemLogsWithError(resp.data);
                 }
                 else {
-                    resp.isStaging ? this.logs.updateSystemLogs(resp.data) : this.logs.updateSystemLogsWithResult(resp.data);
+                    resp.isStaging ?
+                        this.logs.updateSystemLogs(resp.data) :
+                        this.logs.updateSystemLogsWithResult(resp.data);
                 }
             });
     }

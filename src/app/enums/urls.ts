@@ -3,5 +3,8 @@ export enum Urls {
   AUTH = 'api/auth/login',
   FAKE_AUTH = 'api/auth/fake-login',
 
-  PROFILE_DATA = 'api/profile/data'
+  PROFILE_DATA = 'api/profile/data',
+
+  ALL_TESTS = 'api/tests/all',
+  TEST_BLOCKS = 'api/tests/blocks'
 }

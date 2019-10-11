@@ -1,8 +1,6 @@
 <h2>Алгоритмы</h2>
 <div class="row">
-    <button class="icon-button" *ngIf="title" (click)="back()">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
+    <app-go-back *ngIf="title"></app-go-back>
     <h3>{{title || 'Описание'}}</h3>
 </div>
 

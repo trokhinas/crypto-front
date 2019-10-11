@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material';
 
 
 import {LoginComponent} from './components/auth/login/login.component';
@@ -45,6 +46,9 @@ import { TestListComponent } from './components/tests/test-list/test-list.compon
 import { SelectTaskComponent } from './components/tests/test-details/tasks/select-task/select-task.component';
 import { MultiselectTaskComponent } from './components/tests/test-details/tasks/multiselect-task/multiselect-task.component';
 import { InputTaskComponent } from './components/tests/test-details/tasks/input-task/input-task.component';
+import { GoBackComponent } from './components/common/go-back/go-back.component';
+import { TestBodyComponent } from './components/tests/tasks/test-body/test-body.component';
+import { TestControlPanelComponent } from './components/tests/tasks/test-control-panel/test-control-panel.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +83,9 @@ import { InputTaskComponent } from './components/tests/test-details/tasks/input-
       SelectTaskComponent,
       MultiselectTaskComponent,
       InputTaskComponent,
+      GoBackComponent,
+      TestBodyComponent,
+      TestControlPanelComponent,
   ],
   imports: [
       BrowserModule,
@@ -91,7 +98,8 @@ import { InputTaskComponent } from './components/tests/test-details/tasks/input-
       MatCheckboxModule,
       MatButtonModule,
       MatIconModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

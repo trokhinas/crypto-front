@@ -2,6 +2,9 @@
     <span>Введите ответ</span>
     <label>
         {{task.question}}
-        <input [(ngModel)]="block.value">
+        <input
+                [(ngModel)]="block.value"
+                (change)="validate()"
+        >
     </label>
 </div>

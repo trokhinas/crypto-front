@@ -20,6 +20,7 @@ export interface TestTask {
 
 export interface Test {
     testId: number;
+    title: string;
     tasks: Array<TestTask>;
 }
 

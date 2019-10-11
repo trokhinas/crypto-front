@@ -1,0 +1,9 @@
+<div *ngIf="blocks" class="container-fluid">
+    <div *ngFor="let block of blocks"
+         [ngSwitch]="block.task.type">
+        <app-input-task *ngSwitchCase="input" [block]="block"></app-input-task>
+        <app-select-task *ngSwitchCase="select" [block]="block"></app-select-task>
+        <app-multiselect-task *ngSwitchCase="multi" [block]="block"></app-multiselect-task>
+        <hr>
+    </div>
+</div>
