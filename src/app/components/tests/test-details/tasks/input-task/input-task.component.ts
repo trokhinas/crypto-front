@@ -22,7 +22,7 @@ export class InputTaskComponent implements OnInit, Validatable {
     }
 
     isValid() {
-        return this.block.value;
+        return this.block.value.length !== 0;
     }
 
     validate() {

@@ -1,3 +1,15 @@
-<p>
-  multiselect-task works!
-</p>
+<div>
+    <h5>Выберите верные ответы: {{correctsCount}}</h5>
+    <br>
+    <span>{{task.question.text}}</span>
+    <div class="flex-column">
+        <label *ngFor="let answer of task.question.answers">
+            <input
+                    type="checkbox"
+                    (click)="addAnswer(answer.answerId)"
+                    [checked]="isChecked(answer.answerId)"
+            >
+            {{answer.text}}
+        </label>
+    </div>
+</div>

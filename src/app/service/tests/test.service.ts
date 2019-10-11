@@ -4,13 +4,14 @@ import {Urls} from '../../enums/urls';
 import {MyResponse} from '../../common';
 import {map} from 'rxjs/operators';
 import {ResponseStatus} from '../../enums';
+import {Test} from '../../common/tests/tests';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TestService {
 
-    private simpleMap = (resp: MyResponse) => {
+    private simpleMap = (resp: MyResponse<Test>) => {
         if (resp.status === ResponseStatus.OK)
             return resp.data;
         alert(resp.message);
@@ -26,10 +27,10 @@ export class TestService {
             .pipe(map(this.simpleMap));
     }
 
-    loadBlocks(testId: number) {
+    loadTest(testId: number) {
         const url = Urls.TEST_BLOCKS;
-        const params = new HttpParams().set('testId', testId.toString());
-        return this.http.get(url, {params: params})
+        const params = new HttpParams().set('id', testId.toString());
+        return this.http.get<MyResponse<Test>>(url, {params: params})
             .pipe(map(this.simpleMap));
     }
 }

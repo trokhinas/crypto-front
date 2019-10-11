@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TestService} from '../../../service/tests/test.service';
-import {TaskBlock} from '../../../common/tests/tests';
-import {fakeBlocks} from '../../../common/fakes';
+import {TaskBlock, Test} from '../../../common/tests/tests';
 import {TestCheckerService} from '../../../service/tests/test-checker.service';
+import {TaskTypes} from '../../../enums/tests';
 
 @Component({
     selector: 'app-test-details',
@@ -16,6 +16,7 @@ export class TestDetailsComponent implements OnInit {
     id: number;
     title: string;
     blocks: TaskBlock[];
+    test: Test;
 
     constructor(
         private route: ActivatedRoute,
@@ -25,9 +26,24 @@ export class TestDetailsComponent implements OnInit {
 
     ngOnInit() {
         this.id = this.route.snapshot.params.id;
-        this.title = this.route.snapshot.params.title;
-
-        // this.testService.loadBlocks(this.id).subscribe(blocks => this.blocks = blocks);
-        this.blocks = fakeBlocks;
+        this.testService.loadTest(this.id).subscribe(
+            test => {
+                this.test = test;
+                this.title = test.title;
+                this.blocks = test.tasks.map<TaskBlock<any>>(task => {
+                    return {
+                        task: task,
+                        value: task.type === TaskTypes.MANUAL ?
+                            '' :
+                            new Array<number>()
+                    }
+                });
+            }
+        );
+    }
+    
+    
+    submit() {
+        console.log(this.blocks);
     }
 }

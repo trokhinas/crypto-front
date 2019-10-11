@@ -1,7 +1,7 @@
 <div>
-    <span>Введите ответ</span>
+    <h5>Введите ответ</h5>
     <label>
-        {{task.question}}
+        {{task.question.text}}
         <input
                 [(ngModel)]="block.value"
                 (change)="validate()"

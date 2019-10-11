@@ -10,7 +10,7 @@ import {TestCheckerService} from '../../../../../service/tests/test-checker.serv
 })
 export class SelectTaskComponent implements OnInit, Validatable {
 
-    @Input() block: TaskBlock;
+    @Input() block: TaskBlock<Array<number>>;
     task: TestTask;
 
     constructor(private checker: TestCheckerService) {
@@ -29,4 +29,15 @@ export class SelectTaskComponent implements OnInit, Validatable {
         const isBlockValid = this.isValid();
         this.checker.update(isBlockValid);
     }
+    
+    addAnswer(answerId: number) {
+        if (this.block.value.indexOf(answerId) !== -1) {
+            this.block.value = new Array<number>();
+        }
+        else {
+            this.block.value.shift();
+            this.block.value.push(answerId);
+        }
+    }
+    
 }

@@ -6,5 +6,5 @@ export enum Urls {
   PROFILE_DATA = 'api/profile/data',
 
   ALL_TESTS = 'api/tests/all',
-  TEST_BLOCKS = 'api/tests/blocks'
+  TEST_BLOCKS = 'api/tests/'
 }
