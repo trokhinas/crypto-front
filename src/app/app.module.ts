@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
+import { MatListModule } from '@angular/material';
 
 
 import {LoginComponent} from './components/auth/login/login.component';
@@ -99,7 +101,9 @@ import { TestControlPanelComponent } from './components/tests/tasks/test-control
       MatButtonModule,
       MatIconModule,
       MatProgressSpinnerModule,
-      MatDividerModule
+      MatDividerModule,
+      MatCardModule,
+      MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,7 +15,7 @@ export class TestDetailsComponent implements OnInit {
 
     id: number;
     title: string;
-    blocks: TaskBlock[];
+    blocks: TaskBlock<string | Array<number>>[];
     test: Test;
 
     constructor(
@@ -44,6 +44,21 @@ export class TestDetailsComponent implements OnInit {
     
     
     submit() {
-        console.log(this.blocks);
+        const isValid = this.checker.check(this.blocks);
+        if (!isValid) {
+            alert('Не все задания выполнены!');
+        } else {
+            alert('Все ок!');
+        }
+    }
+    
+    clear() {
+        this.blocks.forEach(block => {
+            if (block.task.type === TaskTypes.MANUAL) {
+                block.value = '';
+            } else {
+                block.value = new Array<number>()
+            }
+        })
     }
 }

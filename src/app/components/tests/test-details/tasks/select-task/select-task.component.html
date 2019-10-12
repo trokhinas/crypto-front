@@ -1,14 +1,17 @@
-<div>
-    <h5>Выберите верный вариант ответа</h5>
-    <br>
-    <span>{{task.question.text}}</span>
-    <div class="flex-column">
-        <label *ngFor="let answer of task.question.answers">
-            <input
-                    type="checkbox"
-                    (click)="addAnswer(answer.answerId)"
-            >
-            {{answer.text}}
-        </label>
-    </div>
-</div>
+<mat-card>
+    <mat-card-title>Выберите верный вариант ответа</mat-card-title>
+    <mat-card-subtitle>{{task.question.text}}</mat-card-subtitle>
+    <mat-card-content>
+        <div *ngFor="let answer of task.question.answers">
+            <label>
+                <input
+                        type="checkbox"
+                        (click)="addAnswer(answer.answerId)"
+                        [checked]="isChecked(answer.answerId)"
+                >
+                {{answer.text}}
+            </label>
+            <br>
+        </div>
+    </mat-card-content>
+</mat-card>

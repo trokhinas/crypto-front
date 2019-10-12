@@ -8,6 +8,7 @@
     <hr>
     <app-test-control-panel
         (onSubmit)="submit()"
+        (onClear)="clear()"
     ></app-test-control-panel>
 </div>
 <app-spinner [text]="'Загрузка заданий...'" *ngIf="!test"></app-spinner>

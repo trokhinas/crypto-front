@@ -24,7 +24,7 @@ export interface Test {
     tasks: Array<TestTask>;
 }
 
-export interface TaskBlock<T = string> {
+export interface TaskBlock<T = any> {
     task: TestTask;
     value?: T;
 }
