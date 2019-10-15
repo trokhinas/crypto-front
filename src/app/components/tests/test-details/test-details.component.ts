@@ -30,7 +30,7 @@ export class TestDetailsComponent implements OnInit {
             test => {
                 this.test = test;
                 this.title = test.title;
-                this.blocks = test.tasks.map<TaskBlock<any>>(task => {
+                this.blocks = test.tasks.map<TaskBlock<string | Array<number>>>(task => {
                     return {
                         task: task,
                         value: task.type === TaskTypes.MANUAL ?

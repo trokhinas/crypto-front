@@ -45,7 +45,8 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
     }
     
     handleStart(event: ControlPanelEvent) {
-    
+        const command = AlgorithmCommands.HASH;
+        this.startAlgorithm(event, command);
     }
     
     handleGenKeys() {
