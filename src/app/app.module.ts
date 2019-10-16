@@ -13,7 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDividerModule } from '@angular/material';
+import {MatDividerModule, MatInputModule} from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 
@@ -51,6 +51,7 @@ import { InputTaskComponent } from './components/tests/test-details/tasks/input-
 import { GoBackComponent } from './components/common/go-back/go-back.component';
 import { TestBodyComponent } from './components/tests/tasks/test-body/test-body.component';
 import { TestControlPanelComponent } from './components/tests/tasks/test-control-panel/test-control-panel.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,9 @@ import { TestControlPanelComponent } from './components/tests/tasks/test-control
       MatProgressSpinnerModule,
       MatDividerModule,
       MatCardModule,
-      MatListModule
+      MatListModule,
+      MatInputModule,
+      BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

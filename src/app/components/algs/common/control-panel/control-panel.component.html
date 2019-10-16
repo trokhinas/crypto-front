@@ -1,14 +1,19 @@
 <div *ngIf="blocksResponse">
-    <div *ngFor="let id of blocksResponse.ids">
-        <label>
-            <span>{{blocks[id].name}}</span>
-            <textarea [(ngModel)]="blocks[id].value" [value]="blocks[id].value"></textarea>
-        </label>
-    </div>
+    <form class="form">
+
+        <mat-form-field class="full-width" *ngFor="let id of blocksResponse.ids">
+            <textarea matInput matTextareaAutosize
+                   [placeholder]="blocks[id].name"
+                   [(ngModel)]="blocks[id].value"
+                   name="blockValue"></textarea>
+        </mat-form-field>
+
+    </form>
 
 
-    <button *ngIf="blocksResponse.withKeysGeneration" (click)="clickGenerate()">generate keys</button>
-    <button *ngIf="blocksResponse.withStart" (click)="clickStart()">start</button>
+    <button *ngIf="blocksResponse.withKeysGeneration" (click)="clickGenerate()">Сгенерировать ключи</button>
+    <button *ngIf="blocksResponse.withCheckSign" (click)="clickCheckSign()">Проверить подпись</button>
+    <button *ngIf="blocksResponse.withStart" (click)="clickStart()">Запустить алгоритм</button>
 
     <div *ngIf="blocksResponse.withEncrypt">
         <button (click)="clickEncrypt()"> {{mode && mode.toEncrypt()}} </button>

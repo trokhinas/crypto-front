@@ -11,12 +11,13 @@ import {Mode} from '../../../../common/algs/mode';
 export class ControlPanelComponent implements OnInit {
 
     @Input('blocks') blocksResponse: BlocksResponse;
-    blocks: [ControlPanelBlock];
+    blocks: Array<ControlPanelBlock>;
     
     @Output('onEncrypt') private encryptEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onStart') private startEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onCode') private codeEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onGenKeys') private genKeysEmitter = new EventEmitter();
+    @Output('onCheckSign') private checkSignEmitter = new EventEmitter<ControlPanelEvent>();
 
     mode: Mode;
     isStaging: boolean;
@@ -60,5 +61,9 @@ export class ControlPanelComponent implements OnInit {
             isEncrypt: this.mode.value(),
             isStaging: this.isStaging
         };
+    }
+    
+    clickCheckSign() {
+        this.checkSignEmitter.emit(this.generateEventPayload());
     }
 }

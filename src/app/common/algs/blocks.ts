@@ -5,6 +5,7 @@ export interface BlocksResponse {
     withStart: boolean;
     withEncrypt: boolean;
     withEncode: boolean;
+    withCheckSign: boolean;
 }
 
 export interface ControlPanelBlock {
