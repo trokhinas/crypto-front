@@ -52,6 +52,8 @@ import { GoBackComponent } from './components/common/go-back/go-back.component';
 import { TestBodyComponent } from './components/tests/tasks/test-body/test-body.component';
 import { TestControlPanelComponent } from './components/tests/tasks/test-control-panel/test-control-panel.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TestRowComponent } from './components/tests/test-list/test-row/test-row.component';
+import { TestCreateComponent } from './components/tests/test-create/test-create.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       GoBackComponent,
       TestBodyComponent,
       TestControlPanelComponent,
+      TestRowComponent,
+      TestCreateComponent,
   ],
   imports: [
       BrowserModule,
@@ -106,7 +110,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       MatCardModule,
       MatListModule,
       MatInputModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,15 @@
+<button mat-button (click)="addTest()">
+    Добавить новый тест
+</button>
+<hr>
 <div class="list-group-flush">
     <div *ngFor="let test of tests">
-        <a class="list-group-item list-group-item-action"
-           style="cursor: pointer"
-           (click)="redirectToTest(test.id, test.title)"
-        >
-            <span>{{test.title}}</span>
-        </a>
+        <app-test-row
+                (mouseenter)="setFocus(test.id)"
+                (mouseleave)="clearFocus()"
+                [test]="test"
+                [isTestFocused]="isTestFocused(test)">
+        </app-test-row>
         <hr>
     </div>
-
 </div>

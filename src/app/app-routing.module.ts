@@ -18,6 +18,7 @@ import {LectureListComponent} from './components/courses/lecture/lecture-list/le
 import {AlgorithmComponent} from './components/algs/algorithm/algorithm.component';
 import {TestDetailsComponent} from './components/tests/test-details/test-details.component';
 import {TestListComponent} from './components/tests/test-list/test-list.component';
+import {TestCreateComponent} from './components/tests/test-create/test-create.component';
 
 const courseRoutes: Routes = [
     {path: 'lectures', component: LectureListComponent},
@@ -30,7 +31,8 @@ const profileRoutes: Routes = [
 
 const testRoutes: Routes = [
     {path:'list', component: TestListComponent},
-    {path:':id', component: TestDetailsComponent},
+    {path: 'create', component: TestCreateComponent },
+    {path:':id', component: TestDetailsComponent}
 ];
 
 const userRoutes: Routes = [

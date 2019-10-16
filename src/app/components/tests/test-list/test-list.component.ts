@@ -11,6 +11,7 @@ import {ProfileService} from '../../../service/profile/profile.service';
 export class TestListComponent implements OnInit {
 
     tests: TestLink[];
+    focusTestId: number;
 
     constructor(
         private router: Router,
@@ -20,8 +21,21 @@ export class TestListComponent implements OnInit {
     ngOnInit() {
         this.dataService.loadData().subscribe(data => this.tests = data);
     }
-
-    redirectToTest(id: number, title: string) {
-        this.router.navigate([`/main/tests/${id}`, {title: title}])
+    
+    addTest() {
+        console.log(`click add test`);
+        this.router.navigate(['/main/tests/create']);
+    }
+    
+    isTestFocused(test : TestLink) {
+        return test.id === this.focusTestId;
+    }
+    
+    setFocus(id : number) {
+        this.focusTestId = id;
+    }
+    
+    clearFocus() {
+        this.focusTestId = -1;
     }
 }
