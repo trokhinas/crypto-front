@@ -1,0 +1,9 @@
+<div *ngIf="tasks">
+    <app-task-tile
+            *ngFor="let task of tasks"
+            [task]="task"
+            (onDeleteTask)="deleteTask($event)"
+    >
+    </app-task-tile>
+</div>
+<button (click)="addTask()">Добавить задание</button>

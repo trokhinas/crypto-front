@@ -1,0 +1,9 @@
+<div *ngIf="task" style="border: 1px solid black; height: 100px">
+    <span>{{task.type || 'Тип не задан'}}</span>
+    <div *ngIf="task.question">
+        <span>{{task.question.text || 'Нет названия вопроса'}}</span>
+    </div>
+    <select *ngIf="!task.question">
+    </select>
+    <button (click)="deleteTask()">Удалить</button>
+</div>

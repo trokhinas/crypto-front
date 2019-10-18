@@ -2,7 +2,7 @@
     Добавить новый тест
 </button>
 <hr>
-<div class="list-group-flush">
+<div class="list-group-flush" *ngIf="tests">
     <div *ngFor="let test of tests">
         <app-test-row
                 (mouseenter)="setFocus(test.id)"
@@ -13,3 +13,7 @@
         <hr>
     </div>
 </div>
+<app-spinner
+        *ngIf="!tests"
+        [text]="'Загрузка тестов...'"
+></app-spinner>

@@ -54,6 +54,9 @@ import { TestControlPanelComponent } from './components/tests/tasks/test-control
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TestRowComponent } from './components/tests/test-list/test-row/test-row.component';
 import { TestCreateComponent } from './components/tests/test-create/test-create.component';
+import { SubheaderComponent } from './components/common/subheader/subheader.component';
+import { TaskListComponent } from './components/tests/test-create/task-list/task-list.component';
+import { TaskTileComponent } from './components/tests/test-create/task-list/task-tile/task-tile.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +96,9 @@ import { TestCreateComponent } from './components/tests/test-create/test-create.
       TestControlPanelComponent,
       TestRowComponent,
       TestCreateComponent,
+      SubheaderComponent,
+      TaskListComponent,
+      TaskTileComponent,
   ],
   imports: [
       BrowserModule,

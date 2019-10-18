@@ -1,8 +1,8 @@
 <div *ngIf="test">
-    <div class="row">
-        <app-go-back></app-go-back>
-        <h3>{{title || 'Описание'}}</h3>
-    </div>
+    <app-subheader
+            [title]="title"
+    >
+    </app-subheader>
     <hr>
     <app-test-body [blocks]="blocks"></app-test-body>
     <hr>

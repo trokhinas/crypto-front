@@ -1,3 +1,18 @@
-<p>
-  test-create works!
-</p>
+<app-subheader
+        [title]="'Создание теста'"
+></app-subheader>
+<form>
+    <mat-form-field>
+        <input matInput
+               [placeholder]="'Название теста'"
+               [(ngModel)]="test.title"
+               [name]="'testTitle'"
+        >
+    </mat-form-field>
+</form>
+
+<app-task-list
+        [tasks]="test.tasks"
+        (onTaskAdd)="addTask()"
+        (onTaskDelete)="deleteTask($event)"
+></app-task-list>
