@@ -120,7 +120,7 @@ import { SelectComponent } from './components/common/select/select.component';
       MatInputModule,
       BrowserAnimationsModule,
       MatButtonModule,
-      MatSelectModule
+      MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

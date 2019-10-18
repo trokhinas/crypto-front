@@ -13,6 +13,6 @@
 
 <app-task-list
         [tasks]="test.tasks"
-        (onTaskAdd)="addTask()"
+        (onTaskAdd)="addTask($event)"
         (onTaskDelete)="deleteTask($event)"
 ></app-task-list>

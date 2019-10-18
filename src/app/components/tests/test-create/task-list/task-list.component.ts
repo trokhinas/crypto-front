@@ -9,23 +9,38 @@ import {OptionService} from '../../../../service/tests/create/option.service';
     styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-    @Input() tasks: Array<TestTask>;
+    @Input() tasks : Array<TestTask>;
     
-    @Output('onTaskAdd') taskAdd = new EventEmitter();
+    @Output('onTaskAdd') taskAdd = new EventEmitter<TestTask>();
     @Output('onTaskDelete') taskDelete = new EventEmitter<TestTask>();
-    taskOptions: Array<Option>;
+    taskOptions : Array<Option<TestTask>> = new Array<Option>();
     
-    constructor(private optionService: OptionService) {
+    constructor(private optionService : OptionService) {
     }
     
     ngOnInit() {
-    }
-    
-    addTask() {
-        this.taskAdd.emit();
+        
+        this.optionService.getTaskOptions().subscribe(
+            data => {
+                this.taskOptions = data;
+                this.taskOptions.push({
+                    value: {
+                        taskId: undefined,
+                        type: undefined,
+                        question: undefined
+                    },
+                    label: 'Новое задание'
+                });
+            },
+            error1 => console.log(error1)
+        );
     }
     
     deleteTask(deletedTask : TestTask) {
         this.taskDelete.emit(deletedTask);
+    }
+    
+    handleTaskSelect(taskOption : Option<TestTask>) {
+        this.taskAdd.emit(taskOption.value);
     }
 }

@@ -19,4 +19,8 @@ export class TaskTileComponent implements OnInit {
     deleteTask() {
         this.deleteTaskEmitter.emit(this.task);
     }
+    
+    isDisabled() {
+        return this.task.taskId != undefined;
+    }
 }

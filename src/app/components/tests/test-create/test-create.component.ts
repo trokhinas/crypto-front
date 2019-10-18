@@ -22,16 +22,8 @@ export class TestCreateComponent implements OnInit {
         this.number = 1;
     }
     
-    addTask() {
-        this.test.tasks.push({
-            taskId: undefined,
-            question: {
-                questionId: undefined,
-                text: `Задание ${this.number++}`,
-                answers: undefined
-            },
-            type: undefined
-        });
+    addTask(task: TestTask) {
+        this.test.tasks.push(task);
     }
     
     deleteTask(deletedTask : TestTask) {
