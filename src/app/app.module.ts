@@ -13,7 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatDividerModule, MatInputModule} from '@angular/material';
+import {MatDividerModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 
@@ -57,6 +57,7 @@ import { TestCreateComponent } from './components/tests/test-create/test-create.
 import { SubheaderComponent } from './components/common/subheader/subheader.component';
 import { TaskListComponent } from './components/tests/test-create/task-list/task-list.component';
 import { TaskTileComponent } from './components/tests/test-create/task-list/task-tile/task-tile.component';
+import { SelectComponent } from './components/common/select/select.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { TaskTileComponent } from './components/tests/test-create/task-list/task
       SubheaderComponent,
       TaskListComponent,
       TaskTileComponent,
+      SelectComponent,
   ],
   imports: [
       BrowserModule,
@@ -117,7 +119,8 @@ import { TaskTileComponent } from './components/tests/test-create/task-list/task
       MatListModule,
       MatInputModule,
       BrowserAnimationsModule,
-      MatButtonModule
+      MatButtonModule,
+      MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TestTask} from '../../../../common/tests/tests';
+import {Option} from '../../../../common/components/Option';
+import {OptionService} from '../../../../service/tests/create/option.service';
 
 @Component({
     selector: 'app-task-list',
@@ -11,8 +13,9 @@ export class TaskListComponent implements OnInit {
     
     @Output('onTaskAdd') taskAdd = new EventEmitter();
     @Output('onTaskDelete') taskDelete = new EventEmitter<TestTask>();
+    taskOptions: Array<Option>;
     
-    constructor() {
+    constructor(private optionService: OptionService) {
     }
     
     ngOnInit() {
