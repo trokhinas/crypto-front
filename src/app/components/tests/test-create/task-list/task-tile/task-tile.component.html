@@ -1,11 +1,35 @@
-<div *ngIf="task"
-     style="border: 1px solid black; height: 100px"
->
-    <span>{{task.type || 'Тип не задан'}}</span>
-    <div *ngIf="task.question">
-        <span>{{task.question.text || 'Нет названия вопроса'}}</span>
-    </div>
-    <select *ngIf="!task.question" [disabled]="isDisabled()">
-    </select>
-    <button (click)="deleteTask()">Удалить</button>
-</div>
+<mat-card *ngIf="task && taskTypeOptions">
+    <mat-card-header>
+        <mat-card-title>
+            <mat-select [(value)]="task.type">
+                <mat-option
+
+                        *ngFor="let option of taskTypeOptions"
+                        [value]="option.value"
+                >
+                    {{option.label}}
+                </mat-option>
+            </mat-select>
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <span>{{(task.question && task.question.text) || 'Нет названия вопроса'}}</span>
+        <mat-select [disabled]="isDisabled()"
+                    [(value)]="task.question">
+            <mat-option
+                    *ngFor="let option of questionOption"
+                    [value]="option.value"
+            >
+                {{option.label}}
+            </mat-option>
+        </mat-select>
+    </mat-card-content>
+
+
+    <mat-card-actions>
+        <button mat-button (click)="deleteTask()">Удалить</button>
+    </mat-card-actions>
+
+
+</mat-card>

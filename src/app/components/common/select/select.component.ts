@@ -8,6 +8,8 @@ import {Option} from '../../../common/components/Option';
 })
 export class SelectComponent<V = any> implements OnInit {
     @Input() options: Array<Option>;
+    
+    @Input() value: V;
     @Output('onSelect') selectEmitter = new EventEmitter<Option<V>>();
 
     constructor() {

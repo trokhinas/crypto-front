@@ -1,8 +1,9 @@
-<mat-select>
+<mat-select [(value)]="value">
     <mat-option
             *ngFor="let option of options"
             [value]="option.value"
             (click)="selectionChange(option)"
+
     >
         {{option.label}}
     </mat-option>

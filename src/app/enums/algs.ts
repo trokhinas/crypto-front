@@ -12,3 +12,11 @@ export enum AlgorithmCommands {
     GEN_KEYS = 'keys',
     GET_BLOCKS = 'blocks'
 }
+
+export enum DisplayedButtons {
+    KEY_GEN = 'withKeysGeneration',
+    START = 'withStart',
+    ENCRYPT = 'withEncrypt',
+    ENCODE = 'withEncode',
+    CHECK_SIGN = 'withCheckSign'
+}

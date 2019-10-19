@@ -1,11 +1,7 @@
 export interface BlocksResponse {
     blocks: [ControlPanelBlock];
     ids: Set<string>;
-    withKeysGeneration: boolean;
-    withStart: boolean;
-    withEncrypt: boolean;
-    withEncode: boolean;
-    withCheckSign: boolean;
+    buttonsMap: Map<string, boolean>;
 }
 
 export interface ControlPanelBlock {

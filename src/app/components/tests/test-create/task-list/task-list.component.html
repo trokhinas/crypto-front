@@ -1,10 +1,14 @@
 <div *ngIf="tasks">
-    <app-task-tile
-            *ngFor="let task of tasks"
-            [task]="task"
-            (onDeleteTask)="deleteTask($event)"
-    >
-    </app-task-tile>
+    <div *ngFor="let task of tasks">
+        <app-task-tile
+                [task]="task"
+                (onDeleteTask)="deleteTask($event)"
+                [disabled]="task && task.taskId"
+        >
+        </app-task-tile>
+        <hr>
+    </div>
+
 </div>
 <app-select
         [options]="taskOptions"

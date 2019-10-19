@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BlocksResponse, ControlPanelBlock} from '../../../../common/algs/blocks';
 import {ControlPanelEvent} from '../../../../common/algs';
 import {Mode} from '../../../../common/algs/mode';
+import {DisplayedButtons} from '../../../../enums/algs';
 
 @Component({
     selector: 'alg-control-panel',
@@ -21,6 +22,12 @@ export class ControlPanelComponent implements OnInit {
 
     mode: Mode;
     isStaging: boolean;
+    
+    encrypt = DisplayedButtons.ENCRYPT;
+    start = DisplayedButtons.START;
+    encode = DisplayedButtons.ENCODE;
+    genKeys = DisplayedButtons.KEY_GEN;
+    checkSign = DisplayedButtons.CHECK_SIGN;
 
     constructor() {
     }
@@ -55,6 +62,10 @@ export class ControlPanelComponent implements OnInit {
         this.codeEmitter.emit(this.generateEventPayload());
     }
     
+    clickCheckSign() {
+        this.checkSignEmitter.emit(this.generateEventPayload());
+    }
+    
     private generateEventPayload(): ControlPanelEvent {
         return {
             blocks: this.blocksResponse.blocks,
@@ -63,7 +74,7 @@ export class ControlPanelComponent implements OnInit {
         };
     }
     
-    clickCheckSign() {
-        this.checkSignEmitter.emit(this.generateEventPayload());
+    isDisplayed(buttons: DisplayedButtons) {
+        return this.blocksResponse.buttonsMap[buttons];
     }
 }

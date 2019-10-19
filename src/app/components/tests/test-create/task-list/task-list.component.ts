@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TestTask} from '../../../../common/tests/tests';
 import {Option} from '../../../../common/components/Option';
 import {OptionService} from '../../../../service/tests/create/option.service';
+import {TaskTypes} from '../../../../enums/tests';
 
 @Component({
     selector: 'app-task-list',
@@ -26,7 +27,7 @@ export class TaskListComponent implements OnInit {
                 this.taskOptions.push({
                     value: {
                         taskId: undefined,
-                        type: undefined,
+                        type: TaskTypes.NOT_SELECTED,
                         question: undefined
                     },
                     label: 'Новое задание'
