@@ -13,7 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatDividerModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {MatDividerModule, MatInputModule, MatSelectModule, MatTooltipModule} from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 
@@ -58,6 +58,7 @@ import { SubheaderComponent } from './components/common/subheader/subheader.comp
 import { TaskListComponent } from './components/tests/test-create/task-list/task-list.component';
 import { TaskTileComponent } from './components/tests/test-create/task-list/task-tile/task-tile.component';
 import { SelectComponent } from './components/common/select/select.component';
+import { AnswersListComponent } from './components/tests/test-create/task-list/task-tile/answers-list/answers-list.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { SelectComponent } from './components/common/select/select.component';
       TaskListComponent,
       TaskTileComponent,
       SelectComponent,
+      AnswersListComponent,
   ],
   imports: [
       BrowserModule,
@@ -121,6 +123,7 @@ import { SelectComponent } from './components/common/select/select.component';
       BrowserAnimationsModule,
       MatButtonModule,
       MatSelectModule,
+      MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

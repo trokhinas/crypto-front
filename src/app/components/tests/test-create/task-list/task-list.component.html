@@ -2,8 +2,8 @@
     <div *ngFor="let task of tasks">
         <app-task-tile
                 [task]="task"
-                (onDeleteTask)="deleteTask($event)"
                 [disabled]="task && task.taskId"
+                (onDeleteTask)="deleteTask($event)"
         >
         </app-task-tile>
         <hr>

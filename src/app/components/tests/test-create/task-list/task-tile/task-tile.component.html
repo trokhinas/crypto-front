@@ -1,35 +1,49 @@
 <mat-card *ngIf="task && taskTypeOptions">
     <mat-card-header>
         <mat-card-title>
-            <mat-select [(value)]="task.type">
-                <mat-option
+            {{taskTypeToString(task.type)}}
+        </mat-card-title>
+    </mat-card-header>
 
+
+    <mat-card-content>
+
+        <!--question.text input-->
+        <mat-form-field
+                style="width: 100%"
+        >
+            <input matInput
+                   [disabled]="isQuestionDisabled() || disabled"
+                   [(ngModel)]="task.question.text"
+            >
+        </mat-form-field>
+        <br>
+        <!--taskType select-->
+        <mat-form-field
+                style="width: 100%"
+        >
+            <mat-select
+                    [disabled]="disabled || isQuestionDisabled()"
+                    [(ngModel)]="task.type"
+            >
+                <mat-option
                         *ngFor="let option of taskTypeOptions"
                         [value]="option.value"
+                        (click)="changeQuestionOptionByType(option.value)"
                 >
                     {{option.label}}
                 </mat-option>
             </mat-select>
-        </mat-card-title>
-    </mat-card-header>
+        </mat-form-field>
+        <br>
+        <app-answers-list
 
-    <mat-card-content>
-        <span>{{(task.question && task.question.text) || 'Нет названия вопроса'}}</span>
-        <mat-select [disabled]="isDisabled()"
-                    [(value)]="task.question">
-            <mat-option
-                    *ngFor="let option of questionOption"
-                    [value]="option.value"
-            >
-                {{option.label}}
-            </mat-option>
-        </mat-select>
+        ></app-answers-list>
+
     </mat-card-content>
 
 
     <mat-card-actions>
         <button mat-button (click)="deleteTask()">Удалить</button>
     </mat-card-actions>
-
-
 </mat-card>

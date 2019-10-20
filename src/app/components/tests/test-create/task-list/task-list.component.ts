@@ -28,7 +28,11 @@ export class TaskListComponent implements OnInit {
                     value: {
                         taskId: undefined,
                         type: TaskTypes.NOT_SELECTED,
-                        question: undefined
+                        question: {
+                            questionId: undefined,
+                            text: '',
+                            answers:[]
+                        }
                     },
                     label: 'Новое задание'
                 });

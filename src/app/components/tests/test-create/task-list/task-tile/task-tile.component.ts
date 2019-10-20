@@ -12,26 +12,70 @@ import {OptionService} from '../../../../../service/tests/create/option.service'
 export class TaskTileComponent implements OnInit {
     @Input() task: TestTask;
     @Input() disabled: boolean;
+    
     @Output('onDeleteTask') deleteTaskEmitter = new EventEmitter<TestTask>();
+    
     taskTypeOptions : Array<Option<TaskTypes>>;
-    questionOption : Array<Option<Question>>;
+    questionOptions : Array<Option<Question>>;
+    
+    private questionMap : Map<TaskTypes, Array<Option<TaskTypes>>>;
     
     constructor(private optionsService: OptionService) {
     }
     
     ngOnInit() {
-        this.taskTypeOptions = this.optionsService.getTaskTypeOptions();
+        this.taskTypeOptions = OptionService.getTaskTypeOptions();
+        this.optionsService.getQuestionOptions().subscribe(
+            data => {
+                this.questionOptions = data;
+                this.questionOptions.push({
+                    label: 'Новый вопрос',
+                    value: {
+                        questionId: undefined,
+                        text: '',
+                        answers: []
+                    }
+                })
+            },
+            error1 => console.log(error1)
+        );
+        this.questionMap = new Map();
     }
     
     deleteTask() {
         this.deleteTaskEmitter.emit(this.task);
     }
     
-    isDisabled() {
-        return this.task.taskId != undefined;
+    isQuestionDisabled() {
+        return this.task.question.questionId != undefined;
     }
     
-    handleSelect(taskType : Option<TaskTypes>) {
-        this.task.type = taskType.value;
+    taskTypeToString(type: TaskTypes) {
+        return OptionService.taskTypeToString(type);
+    }
+    
+    changeQuestionOptionByType(value : TaskTypes) {
+        if (this.questionMap[value]) {
+            this.questionOptions = this.questionMap[value];
+        } else {
+            this.optionsService.getQuestionOptionsByType(value)
+                .subscribe(options => {
+                    this.questionOptions = options;
+                    this.questionMap[value] = options;
+            })
+        }
+    }
+    
+    isTypeSelected() {
+        return this.task.type !== TaskTypes.NOT_SELECTED;
+    }
+    
+    handleResetQuestion() {
+        this.task.question = {
+            questionId: undefined,
+            text: '',
+            answers:[]
+        };
+        this.task.type = TaskTypes.NOT_SELECTED;
     }
 }

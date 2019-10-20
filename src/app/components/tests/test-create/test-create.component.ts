@@ -29,4 +29,8 @@ export class TestCreateComponent implements OnInit {
     deleteTask(deletedTask : TestTask) {
         this.test.tasks = this.test.tasks.filter(task => task !== deletedTask);
     }
+    
+    save() {
+        console.log(this.test);
+    }
 }
