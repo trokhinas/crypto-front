@@ -14,6 +14,7 @@
 
     <button *ngIf="isDisplayed(genKeys)" (click)="clickGenerate()">Сгенерировать ключи</button>
     <button *ngIf="isDisplayed(checkSign)" (click)="clickCheckSign()">Проверить подпись</button>
+    <button *ngIf="isDisplayed(checkSign)" (click)="clickSign()">Подписать текст закрытым ключом</button>
     <button *ngIf="isDisplayed(start)" (click)="clickStart()">Запустить алгоритм</button>
 
     <div *ngIf="isDisplayed(encrypt)">

@@ -26,9 +26,17 @@ export class AlgorithmService {
             .pipe(map(response => response.status === ResponseStatus.OK ? response.data : alert(response.message)));
     }
 
-    genKeys() {
+    genKeys(isStaging?: boolean) {
         const url = this.buildUrl(AlgorithmCommands.GEN_KEYS);
-        return this.http.get<MyResponse>(url);
+        const params = new HttpParams().set('isStaging', isStaging ? 'true' : 'false');
+        return this.http.get<MyResponse>(url, {params: params})
+            .pipe(map(response => {
+                if (response.status == ResponseStatus.OK) {
+                    return {error: false, data: response.data, isStaging: isStaging};
+                } else {
+                    return {error: true, data: response.message, isStaging: isStaging};
+                }
+            }));
     }
 
     startAlgorithm(blocks: Array<ControlPanelBlock>, command: AlgorithmCommands, isStaging?: boolean) {

@@ -5,8 +5,10 @@
             [blocks]="blocks"
             (onEncrypt)="handleEncrypt($event)"
             (onStart)="handleStart($event)"
-            (onGenKeys)="handleGenKeys()"
+            (onGenKeys)="handleGenKeys($event)"
             (onCode)="handleCode($event)"
+            (onSign)="handleSign($event)"
+            (onCheckSign)="handleCheckSign($event)"
     ></alg-control-panel>
 </div>
 <app-spinner [text]="'Загрузка блоков'" *ngIf="!blocks"></app-spinner>

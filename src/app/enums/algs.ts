@@ -10,7 +10,9 @@ export enum AlgorithmCommands {
     DECODE = 'decode',
     HASH = 'hash',
     GEN_KEYS = 'keys',
-    GET_BLOCKS = 'blocks'
+    GET_BLOCKS = 'blocks',
+    SIGN = 'sign-message',
+    CHECK_SIGN = 'check-sign'
 }
 
 export enum DisplayedButtons {

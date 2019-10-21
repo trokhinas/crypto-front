@@ -19,6 +19,7 @@ export class ControlPanelComponent implements OnInit {
     @Output('onCode') private codeEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onGenKeys') private genKeysEmitter = new EventEmitter();
     @Output('onCheckSign') private checkSignEmitter = new EventEmitter<ControlPanelEvent>();
+    @Output('onSign') private signEmitter = new EventEmitter<ControlPanelEvent>();
 
     mode: Mode;
     isStaging: boolean;
@@ -51,7 +52,7 @@ export class ControlPanelComponent implements OnInit {
     }
     
     clickGenerate() {
-        this.genKeysEmitter.emit();
+        this.genKeysEmitter.emit(this.generateEventPayload());
     }
     
     clickEncrypt() {
@@ -64,6 +65,10 @@ export class ControlPanelComponent implements OnInit {
     
     clickCheckSign() {
         this.checkSignEmitter.emit(this.generateEventPayload());
+    }
+    
+    clickSign() {
+        this.signEmitter.emit(this.generateEventPayload());
     }
     
     private generateEventPayload(): ControlPanelEvent {
