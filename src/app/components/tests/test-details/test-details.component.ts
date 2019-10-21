@@ -4,6 +4,8 @@ import {TestService} from '../../../service/tests/test.service';
 import {TaskBlock, Test} from '../../../common/tests/tests';
 import {TestCheckerService} from '../../../service/tests/test-checker.service';
 import {TaskTypes} from '../../../enums/tests';
+import {ProfileService} from '../../../service/profile/profile.service';
+import {TestLink} from '../../../common/tests';
 
 @Component({
     selector: 'app-test-details',
@@ -17,29 +19,38 @@ export class TestDetailsComponent implements OnInit {
     title: string;
     blocks: TaskBlock<string | Array<number>>[];
     test: Test;
+    passedTest: TestLink;
 
     constructor(
         private route: ActivatedRoute,
         private testService: TestService,
-        private checker: TestCheckerService) {
+        private checker: TestCheckerService,
+        private profileService: ProfileService) {
     }
 
     ngOnInit() {
-        this.id = this.route.snapshot.params.id;
-        this.testService.loadTest(this.id).subscribe(
-            test => {
-                this.test = test;
-                this.title = test.title;
-                this.blocks = test.tasks.map<TaskBlock<string | Array<number>>>(task => {
-                    return {
-                        task: task,
-                        value: task.type === TaskTypes.MANUAL ?
-                            '' :
-                            new Array<number>()
+        this.profileService.loadData().subscribe(data => {
+            this.id = this.route.snapshot.params.id;
+            const test = data.filter(test => test.id === this.id)[0];
+            if (test && test.mark !== 'N/A') {
+                this.passedTest = test;
+            } else {
+                this.testService.loadTest(this.id).subscribe(
+                    test => {
+                        this.test = test;
+                        this.title = test.title;
+                        this.blocks = test.tasks.map<TaskBlock<string | Array<number>>>(task => {
+                            return {
+                                task: task,
+                                value: task.type === TaskTypes.MANUAL ?
+                                    '' :
+                                    new Array<number>()
+                            }
+                        });
                     }
-                });
+                );
             }
-        );
+        });
     }
     
     
@@ -60,5 +71,13 @@ export class TestDetailsComponent implements OnInit {
                 block.value = new Array<number>()
             }
         })
+    }
+    
+    isPassed() {
+        return this.passedTest;
+    }
+    
+    getMark() {
+        return this.passedTest && this.passedTest.mark || 'N/A';
     }
 }

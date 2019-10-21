@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Test, TestTask} from '../../../common/tests/tests';
+import {TestService} from '../../../service/tests/test.service';
+import {ResponseStatus} from '../../../enums';
+import {PlatformLocation} from '@angular/common';
 
 @Component({
     selector: 'app-test-create',
@@ -10,7 +13,9 @@ export class TestCreateComponent implements OnInit {
     test: Test;
     number: number;
     
-    constructor() {
+    constructor(
+        private testService: TestService,
+        private location: PlatformLocation) {
     }
     
     ngOnInit() {
@@ -31,6 +36,16 @@ export class TestCreateComponent implements OnInit {
     }
     
     save() {
-        console.log(this.test);
+        return this.testService.createTest(this.test).subscribe(
+            response => {
+                if (response.status == ResponseStatus.OK) {
+                    alert('Тест успешно создани');
+                    this.location.back();
+                } else {
+                    alert(`Произошла ошибка: ${response.message}`);
+                    this.location.back();
+                }
+            }
+        );
     }
 }

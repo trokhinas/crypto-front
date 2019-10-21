@@ -33,4 +33,9 @@ export class TestService {
         return this.http.get<MyResponse<Test>>(url, {params: params})
             .pipe(map(this.simpleMap));
     }
+    
+    createTest(test: Test) {
+        const url = Urls.TEST_CREATE;
+        return this.http.post<MyResponse>(url, test);
+    }
 }

@@ -1,4 +1,8 @@
-<button mat-button (click)="addTest()">
+<button
+        *ngIf="isAccessed()"
+        mat-button
+        (click)="addTest()"
+>
     Добавить новый тест
 </button>
 <hr>

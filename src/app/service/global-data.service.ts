@@ -26,4 +26,16 @@ export class GlobalDataService {
     role() {
         return this.currentRole;
     }
+    
+    isTeacher() {
+        return this.currentRole === Roles.TEACHER;
+    }
+    
+    isStudent() {
+        return this.currentRole === Roles.USER;
+    }
+    
+    isAdmin() {
+        return this.currentRole === Roles.ADMIN;
+    }
 }

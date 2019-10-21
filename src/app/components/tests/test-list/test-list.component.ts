@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TestLink} from '../../../common/tests';
 import {Router} from '@angular/router';
 import {ProfileService} from '../../../service/profile/profile.service';
+import {GlobalDataService} from '../../../service/global-data.service';
 
 @Component({
     selector: 'app-test-list',
@@ -15,7 +16,8 @@ export class TestListComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private dataService: ProfileService) {
+        private dataService: ProfileService,
+        private global: GlobalDataService) {
     }
 
     ngOnInit() {
@@ -37,5 +39,9 @@ export class TestListComponent implements OnInit {
     
     clearFocus() {
         this.focusTestId = -1;
+    }
+    
+    isAccessed() {
+        return this.global.isTeacher() || this.global.isAdmin();
     }
 }

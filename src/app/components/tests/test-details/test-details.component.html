@@ -1,4 +1,4 @@
-<div *ngIf="test">
+<div *ngIf="test && !isPassed()">
     <app-subheader
             [title]="title"
     >
@@ -11,4 +11,11 @@
         (onClear)="clear()"
     ></app-test-control-panel>
 </div>
-<app-spinner [text]="'Загрузка заданий...'" *ngIf="!test"></app-spinner>
+<div *ngIf="test && isPassed()">
+    <app-subheader
+            [title]="title"
+    >
+    </app-subheader>
+    <span>Вы уже прошли этот тест, ваша оценка {{getMark()}}</span>
+</div>
+<app-spinner [text]="'Загрузка заданий...'" *ngIf="!test && !isPassed()"></app-spinner>
