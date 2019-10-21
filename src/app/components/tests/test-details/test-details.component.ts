@@ -6,6 +6,7 @@ import {TestCheckerService} from '../../../service/tests/test-checker.service';
 import {TaskTypes} from '../../../enums/tests';
 import {ProfileService} from '../../../service/profile/profile.service';
 import {TestLink} from '../../../common/tests';
+import {PlatformLocation} from '@angular/common';
 
 @Component({
     selector: 'app-test-details',
@@ -14,20 +15,21 @@ import {TestLink} from '../../../common/tests';
     providers: [TestCheckerService]
 })
 export class TestDetailsComponent implements OnInit {
-
-    id: number;
-    title: string;
-    blocks: TaskBlock<string | Array<number>>[];
-    test: Test;
-    passedTest: TestLink;
-
+    
+    id : number;
+    title : string;
+    blocks : TaskBlock<string | Array<number>>[];
+    test : Test;
+    passedTest : TestLink;
+    
     constructor(
-        private route: ActivatedRoute,
-        private testService: TestService,
-        private checker: TestCheckerService,
-        private profileService: ProfileService) {
+        private route : ActivatedRoute,
+        private testService : TestService,
+        private checker : TestCheckerService,
+        private profileService : ProfileService,
+        private location: PlatformLocation) {
     }
-
+    
     ngOnInit() {
         this.profileService.loadData().subscribe(data => {
             this.id = this.route.snapshot.params.id;
@@ -45,7 +47,7 @@ export class TestDetailsComponent implements OnInit {
                                 value: task.type === TaskTypes.MANUAL ?
                                     '' :
                                     new Array<number>()
-                            }
+                            };
                         });
                     }
                 );
@@ -59,7 +61,16 @@ export class TestDetailsComponent implements OnInit {
         if (!isValid) {
             alert('Не все задания выполнены!');
         } else {
-            alert('Все ок!');
+            this.testService.submitTestToCheck(this.id, this.blocks).subscribe(
+                data => {
+                    alert(`${data.mark}`);
+                    this.location.back();
+                },
+                error1 => {
+                    console.log(`error while sending test to check - ${error1}`);
+                    this.location.back();
+                }
+            )
         }
     }
     
@@ -68,9 +79,9 @@ export class TestDetailsComponent implements OnInit {
             if (block.task.type === TaskTypes.MANUAL) {
                 block.value = '';
             } else {
-                block.value = new Array<number>()
+                block.value = new Array<number>();
             }
-        })
+        });
     }
     
     isPassed() {

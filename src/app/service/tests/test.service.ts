@@ -4,7 +4,8 @@ import {Urls} from '../../enums/urls';
 import {MyResponse} from '../../common';
 import {map} from 'rxjs/operators';
 import {ResponseStatus} from '../../enums';
-import {Test} from '../../common/tests/tests';
+import {TaskBlock, Test} from '../../common/tests/tests';
+import {GlobalDataService} from '../global-data.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,8 @@ export class TestService {
     };
 
     constructor(
-        private http: HttpClient) {
+        private http: HttpClient,
+        private global: GlobalDataService) {
     }
 
     getAll() {
@@ -37,5 +39,20 @@ export class TestService {
     createTest(test: Test) {
         const url = Urls.TEST_CREATE;
         return this.http.post<MyResponse>(url, test);
+    }
+    
+    submitTestToCheck(testId: number, taskAnswerList: Array<TaskBlock>) {
+        const url = Urls.CHECK_TEST;
+        const params = new HttpParams()
+            .set("testId", testId.toString())
+            .set("userId", this.global.user().id.toString());
+        return this.http.post<MyResponse<{mark}>>(url, taskAnswerList, {params: params})
+            .pipe(map(response => {
+                if (response.status == ResponseStatus.OK) {
+                    return response.data;
+                } else {
+                    alert(response.message);
+                }
+            }))
     }
 }

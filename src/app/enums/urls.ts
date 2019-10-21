@@ -8,6 +8,7 @@ export enum Urls {
     ALL_TESTS = 'api/tests/all',
     TEST_BLOCKS = 'api/tests/',
     TEST_CREATE = 'api/tests/add-test',
+    CHECK_TEST = 'api/answer',
     
     TASK_OPTIONS = 'api/task/options',
     QUESTION_OPTIONS = 'api/question/options'
