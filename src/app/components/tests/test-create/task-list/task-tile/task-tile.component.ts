@@ -12,8 +12,9 @@ import {OptionService} from '../../../../../service/tests/create/option.service'
 export class TaskTileComponent implements OnInit {
     @Input() task: TestTask;
     @Input() disabled: boolean;
+    @Input() testNumber: number;
     
-    @Output('onDeleteTask') deleteTaskEmitter = new EventEmitter<TestTask>();
+    @Output('onDeleteTask') deleteTaskEmitter = new EventEmitter<number>();
     
     taskTypeOptions : Array<Option<TaskTypes>>;
     questionOptions : Array<Option<Question>>;
@@ -43,7 +44,7 @@ export class TaskTileComponent implements OnInit {
     }
     
     deleteTask() {
-        this.deleteTaskEmitter.emit(this.task);
+        this.deleteTaskEmitter.emit(this.testNumber);
     }
     
     isQuestionDisabled() {

@@ -13,7 +13,7 @@ export class TaskListComponent implements OnInit {
     @Input() tasks : Array<TestTask>;
     
     @Output('onTaskAdd') taskAdd = new EventEmitter<TestTask>();
-    @Output('onTaskDelete') taskDelete = new EventEmitter<TestTask>();
+    @Output('onTaskDelete') taskDelete = new EventEmitter<number>();
     taskOptions : Array<Option<TestTask>> = new Array<Option>();
     
     constructor(private optionService : OptionService) {
@@ -25,15 +25,7 @@ export class TaskListComponent implements OnInit {
             data => {
                 this.taskOptions = data;
                 this.taskOptions.push({
-                    value: {
-                        taskId: undefined,
-                        type: TaskTypes.NOT_SELECTED,
-                        question: {
-                            questionId: undefined,
-                            text: '',
-                            answers:[]
-                        }
-                    },
+                    value: undefined,
                     label: 'Новое задание'
                 });
             },
@@ -41,8 +33,8 @@ export class TaskListComponent implements OnInit {
         );
     }
     
-    deleteTask(deletedTask : TestTask) {
-        this.taskDelete.emit(deletedTask);
+    deleteTask(deletedTaskNumber : number) {
+        this.taskDelete.emit(deletedTaskNumber);
     }
     
     handleTaskSelect(taskOption : Option<TestTask>) {

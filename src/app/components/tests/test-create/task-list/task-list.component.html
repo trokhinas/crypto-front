@@ -1,8 +1,9 @@
 <div *ngIf="tasks">
-    <div *ngFor="let task of tasks">
+    <div *ngFor="let task of tasks; let i = index">
         <app-task-tile
                 [task]="task"
                 [disabled]="task && task.taskId"
+                [testNumber]="i"
                 (onDeleteTask)="deleteTask($event)"
         >
         </app-task-tile>

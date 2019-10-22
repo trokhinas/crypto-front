@@ -3,6 +3,8 @@ import {Test, TestTask} from '../../../common/tests/tests';
 import {TestService} from '../../../service/tests/test.service';
 import {ResponseStatus} from '../../../enums';
 import {PlatformLocation} from '@angular/common';
+import {CreateCheckerService} from '../../../service/tests/create/create-checker.service';
+import {TaskTypes} from '../../../enums/tests';
 
 @Component({
     selector: 'app-test-create',
@@ -15,7 +17,8 @@ export class TestCreateComponent implements OnInit {
     
     constructor(
         private testService: TestService,
-        private location: PlatformLocation) {
+        private location: PlatformLocation,
+        private checker: CreateCheckerService) {
     }
     
     ngOnInit() {
@@ -28,24 +31,44 @@ export class TestCreateComponent implements OnInit {
     }
     
     addTask(task: TestTask) {
-        this.test.tasks.push(task);
+        if (task == undefined) {
+            this.test.tasks.push({
+                taskId: undefined,
+                type: TaskTypes.NOT_SELECTED,
+                question: {
+                    questionId: undefined,
+                    text: `Новый вопрос ${this.number ++}`,
+                    answers: []
+                }
+            })
+        }
+        if (task.taskId && this.test.tasks.indexOf(task) != -1) {
+            alert("Невозможно добавить в тест два одинаковых задания!");
+        } else this.test.tasks.push(task);
     }
     
-    deleteTask(deletedTask : TestTask) {
-        this.test.tasks = this.test.tasks.filter(task => task !== deletedTask);
+    deleteTask(deletedTaskNumber : number) {
+        this.test.tasks = this.test.tasks.filter((task: TestTask, index: number) => index !== deletedTaskNumber);
     }
     
     save() {
-        return this.testService.createTest(this.test).subscribe(
-            response => {
-                if (response.status == ResponseStatus.OK) {
-                    alert('Тест успешно создани');
-                    this.location.back();
-                } else {
-                    alert(`Произошла ошибка: ${response.message}`);
-                    this.location.back();
+        const status = this.checker.isValidCreatedTest(this.test);
+        if (status.valid) {
+            this.testService.createTest(this.test).subscribe(
+                response => {
+                    if (response.status == ResponseStatus.OK) {
+                        alert('Тест успешно создани');
+                        this.location.back();
+                    } else {
+                        alert(`Произошла ошибка: ${response.message}`);
+                        this.location.back();
+                    }
                 }
-            }
-        );
+            );
+        }
+        else {
+            alert(status.error);
+        }
+        
     }
 }
