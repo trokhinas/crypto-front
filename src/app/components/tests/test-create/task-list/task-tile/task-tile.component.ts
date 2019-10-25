@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Question, TestTask} from '../../../../../common/tests/tests';
+import {Answer, Question, TestTask} from '../../../../../common/tests/tests';
 import {Option} from '../../../../../common/components/Option';
 import {TaskTypes} from '../../../../../enums/tests';
 import {OptionService} from '../../../../../service/tests/create/option.service';
@@ -18,6 +18,7 @@ export class TaskTileComponent implements OnInit {
     
     taskTypeOptions : Array<Option<TaskTypes>>;
     questionOptions : Array<Option<Question>>;
+    answerNumber : number;
     
     private questionMap : Map<TaskTypes, Array<Option<TaskTypes>>>;
     
@@ -25,6 +26,7 @@ export class TaskTileComponent implements OnInit {
     }
     
     ngOnInit() {
+        this.answerNumber = 1;
         this.taskTypeOptions = OptionService.getTaskTypeOptions();
         this.optionsService.getQuestionOptions().subscribe(
             data => {
@@ -48,35 +50,28 @@ export class TaskTileComponent implements OnInit {
     }
     
     isQuestionDisabled() {
-        return this.task.question.questionId != undefined;
+        const task = this.task;
+        return task.question && task.question.questionId;
     }
     
     taskTypeToString(type: TaskTypes) {
         return OptionService.taskTypeToString(type);
     }
     
-    changeQuestionOptionByType(value : TaskTypes) {
-        if (this.questionMap[value]) {
-            this.questionOptions = this.questionMap[value];
-        } else {
-            this.optionsService.getQuestionOptionsByType(value)
-                .subscribe(options => {
-                    this.questionOptions = options;
-                    this.questionMap[value] = options;
-            })
-        }
+    changeTaskType() {
+        this.task.question.answers = [];
     }
     
-    isTypeSelected() {
-        return this.task.type !== TaskTypes.NOT_SELECTED;
-    }
-    
-    handleResetQuestion() {
-        this.task.question = {
-            questionId: undefined,
-            text: '',
-            answers:[]
+    handleAddAnswer() {
+        const answer : Answer = {
+            answerId: undefined,
+            correct: this.task.type == TaskTypes.MANUAL,
+            text: `Ответ ${this.answerNumber++}`
         };
-        this.task.type = TaskTypes.NOT_SELECTED;
+        this.task.question.answers.push(answer);
+    }
+    
+    handleDeleteAnswer(deletedIndex : number) {
+        this.task.question.answers = this.task.question.answers.filter((answer, index) => index !== deletedIndex);
     }
 }

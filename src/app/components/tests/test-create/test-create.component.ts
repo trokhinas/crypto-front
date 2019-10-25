@@ -5,6 +5,7 @@ import {ResponseStatus} from '../../../enums';
 import {PlatformLocation} from '@angular/common';
 import {CreateCheckerService} from '../../../service/tests/create/create-checker.service';
 import {TaskTypes} from '../../../enums/tests';
+import {copyObject} from '../../../common/utils/utils';
 
 @Component({
     selector: 'app-test-create',
@@ -12,13 +13,13 @@ import {TaskTypes} from '../../../enums/tests';
     styleUrls: ['./test-create.component.scss']
 })
 export class TestCreateComponent implements OnInit {
-    test: Test;
-    number: number;
+    test : Test;
+    number : number;
     
     constructor(
-        private testService: TestService,
-        private location: PlatformLocation,
-        private checker: CreateCheckerService) {
+        private testService : TestService,
+        private location : PlatformLocation,
+        private checker : CreateCheckerService) {
     }
     
     ngOnInit() {
@@ -30,25 +31,26 @@ export class TestCreateComponent implements OnInit {
         this.number = 1;
     }
     
-    addTask(task: TestTask) {
+    addTask(task : TestTask) {
         if (task == undefined) {
             this.test.tasks.push({
                 taskId: undefined,
                 type: TaskTypes.NOT_SELECTED,
                 question: {
                     questionId: undefined,
-                    text: `Новый вопрос ${this.number ++}`,
+                    text: `Новый вопрос ${this.number++}`,
                     answers: []
                 }
-            })
+            });
+        } else if (task.taskId && this.test.tasks.indexOf(task) != -1) {
+            alert('Невозможно добавить в тест два одинаковых задания!');
+        } else {
+            this.test.tasks.push(copyObject(task));
         }
-        if (task.taskId && this.test.tasks.indexOf(task) != -1) {
-            alert("Невозможно добавить в тест два одинаковых задания!");
-        } else this.test.tasks.push(task);
     }
     
     deleteTask(deletedTaskNumber : number) {
-        this.test.tasks = this.test.tasks.filter((task: TestTask, index: number) => index !== deletedTaskNumber);
+        this.test.tasks = this.test.tasks.filter((task : TestTask, index : number) => index !== deletedTaskNumber);
     }
     
     save() {
@@ -65,8 +67,7 @@ export class TestCreateComponent implements OnInit {
                     }
                 }
             );
-        }
-        else {
+        } else {
             alert(status.error);
         }
         

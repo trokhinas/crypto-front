@@ -1,3 +1,117 @@
-<p>
-  answers-list works!
-</p>
+<div [ngSwitch]="type">
+    <div *ngSwitchCase="manual">
+        <div
+                class="row"
+                style="margin-bottom: 10px"
+                *ngFor="let answer of answers; let i = index">
+            <div class="col-11">
+                <form>
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                               [disabled]="disabled"
+                               [placeholder]="'Введите вариант ответа'"
+                               [(ngModel)]="answer.text"
+                               [name]="'answerText'"
+                        >
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="col-1">
+                <button
+                        mat-button
+                        [disabled]="disabled"
+                        (click)="deleteAnswer(i)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="select">
+        <div
+                class="row"
+                style="margin-bottom: 10px"
+                *ngFor="let answer of answers; let i = index">
+            <div class="col-10">
+                <form>
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                               [disabled]="disabled"
+                               [placeholder]="'Введите вариант ответа'"
+                               [(ngModel)]="answer.text"
+                               [name]="'answerText'"
+                        >
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="col-1">
+                <form>
+                    <mat-checkbox
+                            [disabled]="disabled"
+                            [(ngModel)]="answer.correct"
+                            [name]="'isAnswerCorrect'"
+                    >
+
+                    </mat-checkbox>
+                </form>
+            </div>
+            <div class="col-1">
+                <button
+                        mat-button
+                        [disabled]="disabled"
+                        (click)="deleteAnswer(i)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="multi">
+        <div
+                class="row"
+                style="margin-bottom: 10px"
+                *ngFor="let answer of answers; let i = index">
+            <div class="col-10">
+                <form>
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                               [disabled]="disabled"
+                               [placeholder]="'Введите вариант ответа'"
+                               [(ngModel)]="answer.text"
+                               [name]="'answerText'"
+                        >
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="col-1">
+                <form>
+                    <mat-checkbox
+                            [disabled]="disabled"
+                            [(ngModel)]="answer.correct"
+                    >
+
+                    </mat-checkbox>
+                </form>
+            </div>
+            <div class="col-1">
+                <button
+                        mat-button
+                        [disabled]="disabled"
+                        (click)="deleteAnswer(i)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <button
+            (click)="addAnswer()"
+            [disabled]="typeIsNotSelected() || disabled || disabledByType()"
+    >
+        Добавить ответ
+    </button>
+</div>

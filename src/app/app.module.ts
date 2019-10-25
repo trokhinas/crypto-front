@@ -123,7 +123,8 @@ import { AnswersListComponent } from './components/tests/test-create/task-list/t
       BrowserAnimationsModule,
       MatButtonModule,
       MatSelectModule,
-      MatTooltipModule
+      MatTooltipModule,
+      MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

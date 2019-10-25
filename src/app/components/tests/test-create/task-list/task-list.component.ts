@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TestTask} from '../../../../common/tests/tests';
 import {Option} from '../../../../common/components/Option';
 import {OptionService} from '../../../../service/tests/create/option.service';
-import {TaskTypes} from '../../../../enums/tests';
+import {copyObject} from '../../../../common/utils/utils';
 
 @Component({
     selector: 'app-task-list',
@@ -38,6 +38,7 @@ export class TaskListComponent implements OnInit {
     }
     
     handleTaskSelect(taskOption : Option<TestTask>) {
-        this.taskAdd.emit(taskOption.value);
+        const copy = taskOption.value ? copyObject(taskOption.value) : undefined;
+        this.taskAdd.emit(copy);
     }
 }
