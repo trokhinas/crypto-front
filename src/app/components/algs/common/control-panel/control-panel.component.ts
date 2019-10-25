@@ -29,6 +29,8 @@ export class ControlPanelComponent implements OnInit {
     encode = DisplayedButtons.ENCODE;
     genKeys = DisplayedButtons.KEY_GEN;
     checkSign = DisplayedButtons.CHECK_SIGN;
+    fileCompression = DisplayedButtons.FILE_COMPRESSION;
+    stringCompression = DisplayedButtons.STRING_COMPRESSION;
 
     constructor() {
     }

@@ -15,7 +15,11 @@
     <button *ngIf="isDisplayed(genKeys)" (click)="clickGenerate()">Сгенерировать ключи</button>
     <button *ngIf="isDisplayed(checkSign)" (click)="clickCheckSign()">Проверить подпись</button>
     <button *ngIf="isDisplayed(checkSign)" (click)="clickSign()">Подписать текст закрытым ключом</button>
+
     <button *ngIf="isDisplayed(start)" (click)="clickStart()">Запустить алгоритм</button>
+
+    <button *ngIf="isDisplayed(fileCompression)">Загрузить файл</button>
+    <button *ngIf="isDisplayed(fileCompression)">Сжать файл</button>
 
     <div *ngIf="isDisplayed(encrypt)">
         <button (click)="clickEncrypt()"> {{mode && mode.toEncrypt()}} </button>

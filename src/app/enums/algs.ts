@@ -20,5 +20,7 @@ export enum DisplayedButtons {
     START = 'withStart',
     ENCRYPT = 'withEncrypt',
     ENCODE = 'withEncode',
-    CHECK_SIGN = 'withCheckSign'
+    CHECK_SIGN = 'withCheckSign',
+    FILE_COMPRESSION = 'withFileCompression',
+    STRING_COMPRESSION = 'withStringCompression'
 }
