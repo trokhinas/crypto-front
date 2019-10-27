@@ -18,8 +18,12 @@
 
     <button *ngIf="isDisplayed(start)" (click)="clickStart()">Запустить алгоритм</button>
 
-    <button *ngIf="isDisplayed(fileCompression)">Загрузить файл</button>
-    <button *ngIf="isDisplayed(fileCompression)">Сжать файл</button>
+    <label *ngIf="isDisplayed(fileCompression)">
+        <input type="file"
+               (change)="onFileUpload($event.target['files'])"
+        >
+    </label>
+    <button *ngIf="isDisplayed(fileCompression)" (click)="onCompression()">Сжать файл</button>
 
     <div *ngIf="isDisplayed(encrypt)">
         <button (click)="clickEncrypt()"> {{mode && mode.toEncrypt()}} </button>

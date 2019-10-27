@@ -94,4 +94,17 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
             });
     }
     
+    handleFileLoad(files : FileList) {
+        const fileToUpload = files.item(0);
+        this.algService.uploadFile(fileToUpload).subscribe(
+            () => alert('Файл успешно загружен'),
+            () => alert('Произошла ошибка')
+        );
+    }
+    
+    handleCompression(event : ControlPanelEvent) {
+        const command = AlgorithmCommands.COMPRESSION;
+        const message = 'Выполняется сжатие';
+        this.logs.updateUserLogs(message);
+    }
 }

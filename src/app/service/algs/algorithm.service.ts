@@ -4,7 +4,7 @@ import {AlgorithmCommands} from '../../enums/algs';
 import {ControlPanelBlock} from '../../common/algs/blocks';
 import {MyResponse} from '../../common';
 import {ResponseStatus} from '../../enums';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +38,15 @@ export class AlgorithmService {
                 }
             }));
     }
+    
+    uploadFile(file : File) {
+        const url = this.buildUrl(AlgorithmCommands.UPLOAD_FILE);
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+        return this.http
+            .post(url, formData)
+            .pipe(map(() => { return true; }));
+    }
 
     startAlgorithm(blocks: Array<ControlPanelBlock>, command: AlgorithmCommands, isStaging?: boolean) {
         const url = this.buildUrl(command);
@@ -53,5 +62,9 @@ export class AlgorithmService {
 
     private buildUrl(command: AlgorithmCommands) {
         return `api/${this._urlBase}/${command}`;
+    }
+    
+    private handleError(e : any) {
+        console.log(e);
     }
 }

@@ -20,7 +20,9 @@ export class ControlPanelComponent implements OnInit {
     @Output('onGenKeys') private genKeysEmitter = new EventEmitter();
     @Output('onCheckSign') private checkSignEmitter = new EventEmitter<ControlPanelEvent>();
     @Output('onSign') private signEmitter = new EventEmitter<ControlPanelEvent>();
-
+    @Output('onFileLoad') private fileLoadEmitter = new EventEmitter<FileList>();
+    @Output('onCompression') private compressionEmitter = new EventEmitter<ControlPanelEvent>();
+    
     mode: Mode;
     isStaging: boolean;
     
@@ -83,5 +85,13 @@ export class ControlPanelComponent implements OnInit {
     
     isDisplayed(buttons: DisplayedButtons) {
         return this.blocksResponse.buttonsMap[buttons];
+    }
+    
+    onFileUpload(files : FileList) {
+        this.fileLoadEmitter.emit(files);
+    }
+    
+    onCompression() {
+        this.compressionEmitter.emit(this.generateEventPayload());
     }
 }

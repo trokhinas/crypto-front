@@ -12,7 +12,9 @@ export enum AlgorithmCommands {
     GEN_KEYS = 'keys',
     GET_BLOCKS = 'blocks',
     SIGN = 'sign-message',
-    CHECK_SIGN = 'check-sign'
+    CHECK_SIGN = 'check-sign',
+    UPLOAD_FILE = 'upload',
+    COMPRESSION = 'compression'
 }
 
 export enum DisplayedButtons {

@@ -13,7 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatDividerModule, MatInputModule, MatSelectModule, MatTooltipModule} from '@angular/material';
+import {MatDividerModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule} from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 
@@ -124,7 +124,8 @@ import { AnswersListComponent } from './components/tests/test-create/task-list/t
       MatButtonModule,
       MatSelectModule,
       MatTooltipModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
