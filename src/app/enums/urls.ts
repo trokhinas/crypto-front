@@ -11,5 +11,7 @@ export enum Urls {
     CHECK_TEST = 'api/answer',
     
     TASK_OPTIONS = 'api/task/options',
-    QUESTION_OPTIONS = 'api/question/options'
+    QUESTION_OPTIONS = 'api/question/options',
+    
+    USER_GRID_MARKS = 'api/user-grid/marks'
 }
