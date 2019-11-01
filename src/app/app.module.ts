@@ -24,7 +24,6 @@ import {ControlPanelComponent} from './components/control-panel/control-panel.co
 import {ProfileComponent} from './components/profile/profile.component';
 import {CoursesMainComponent} from './components/courses/courses-main/courses-main.component';
 import {LectureLinkComponent} from './components/courses/lecture/lecture-link/lecture-link.component';
-import {LectureDetailsComponent} from './components/courses/lecture/lecture-details/lecture-details.component';
 import {LectureListComponent} from './components/courses/lecture/lecture-list/lecture-list.component';
 import {AlgsMainComponent} from './components/algs/algs-main/algs-main.component';
 import {HeaderComponent} from './components/common/header/header.component';
@@ -69,7 +68,6 @@ import { AnswersListComponent } from './components/tests/test-create/task-list/t
       ProfileComponent,
       CoursesMainComponent,
       LectureLinkComponent,
-      LectureDetailsComponent,
       LectureListComponent,
       AlgsMainComponent,
       HeaderComponent,

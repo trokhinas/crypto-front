@@ -1,8 +1,13 @@
-<div class="container" *ngFor="let lecture of lectures">
-    <div class="row">
+<label>
+    Добавить
+    <input type="file" (change)="uploadLecture($event.target['files'])">
+</label>
+<div class="container" *ngIf="lectures && lectures.length !== 0">
+    <div class="row" *ngFor="let lecture of lectures">
         <app-lecture-link
                 [lectureId]="lecture.id"
-                [lectureTitle]="lecture.title"
+                [lectureTitle]="lecture.name"
+                (click)="downloadLecture(lecture.id, lecture.name)"
         ></app-lecture-link>
     </div>
 </div>

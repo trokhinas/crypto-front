@@ -13,7 +13,6 @@ import {AlgsMainComponent} from './components/algs/algs-main/algs-main.component
 import {TestsMainComponent} from './components/tests/tests-main.component';
 import {UsersComponent} from './components/users/users.component';
 
-import {LectureDetailsComponent} from './components/courses/lecture/lecture-details/lecture-details.component';
 import {LectureListComponent} from './components/courses/lecture/lecture-list/lecture-list.component';
 import {AlgorithmComponent} from './components/algs/algorithm/algorithm.component';
 import {TestDetailsComponent} from './components/tests/test-details/test-details.component';
@@ -21,8 +20,7 @@ import {TestListComponent} from './components/tests/test-list/test-list.componen
 import {TestCreateComponent} from './components/tests/test-create/test-create.component';
 
 const courseRoutes: Routes = [
-    {path: 'lectures', component: LectureListComponent},
-    {path: 'lectures/:id', component: LectureDetailsComponent}
+    {path: 'lectures', component: LectureListComponent}
 ];
 
 const profileRoutes: Routes = [

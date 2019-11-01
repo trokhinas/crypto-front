@@ -13,5 +13,9 @@ export enum Urls {
     TASK_OPTIONS = 'api/task/options',
     QUESTION_OPTIONS = 'api/question/options',
     
-    USER_GRID_MARKS = 'api/user-grid/marks'
+    USER_GRID_MARKS = 'api/user-grid/marks',
+    
+    ALL_LECTURES = 'api/lecture/all',
+    DOWNLOAD_LECTURE = 'api/lecture/find',
+    UPLOAD_LECTURE = 'api/lecture/upload'
 }
