@@ -1,9 +1,29 @@
 <div *ngIf="data && data.length && columns && columns.length">
     <mat-table [dataSource]="data">
 
-        <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
-            <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row[column.key] }}</mat-cell>
+        <ng-container
+                *ngFor="let column of columns"
+                [matColumnDef]="column.key"
+        >
+
+
+            <ng-container *ngIf="isDefaultColumn(column)">
+                <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row[column.key] }}</mat-cell>
+            </ng-container>
+
+            <ng-container *ngIf="isDeleteEditColumn(column)">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-button (click)="editUser(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-button (click)="deleteUser(row)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

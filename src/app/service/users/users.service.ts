@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {GlobalDataService} from '../global-data.service';
 import {Urls} from '../../enums/urls';
 import {MyResponse} from '../../common';
@@ -17,12 +17,19 @@ export class UsersService {
     }
     
     getUserData() {
-        const url = Urls.USER_GRID_MARKS;
+        const url = this.global.isTeacher() ? Urls.USER_GRID_MARKS : Urls.USER_GRID_EDIT;
         return this.http.get<MyResponse<GridDataResponse>>(url)
             .pipe(map(response => {
                 if (response.status == ResponseStatus.OK)
                     return response.data;
                 alert(response.message);
             }));
+    }
+    
+    deleteUser(id: number) {
+        const url = 'api/user';
+        return this.http.delete<MyResponse>(url, {
+            params: new HttpParams().set("userId", id.toString())
+        });
     }
 }
