@@ -6,6 +6,8 @@ import {BlocksResponse} from '../../../common/algs/blocks';
 import {ControlPanelEvent} from '../../../common/algs';
 import {AlgorithmCommands} from '../../../enums/algs';
 import {map} from 'rxjs/operators';
+import * as FileSaver from 'file-saver';
+import {ResponseStatus} from '../../../enums';
 
 @Component({
     selector: 'app-algorithm',
@@ -96,15 +98,31 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
     
     handleFileLoad(files : FileList) {
         const fileToUpload = files.item(0);
+        if (fileToUpload.type !== 'image/jpeg') {
+            alert('Допускаются только jpg изображения');
+            return;
+        }
+        if (fileToUpload.size / 1024 / 1024 > 1) {
+            alert('Допускаются изображения размером не более 1 MB');
+            return;
+        }
         this.algService.uploadFile(fileToUpload).subscribe(
-            () => alert('Файл успешно загружен'),
+            response => {
+               if (response.status == ResponseStatus.OK) {
+                   alert('Изображение успешно загружено');
+               } else {
+                   alert(response.message);
+               }
+            },
             () => alert('Произошла ошибка')
         );
     }
     
     handleCompression(event : ControlPanelEvent) {
-        const command = AlgorithmCommands.COMPRESSION;
         const message = 'Выполняется сжатие';
         this.logs.updateUserLogs(message);
+        this.algService.compressImage(event.isStaging).subscribe(blob => {
+            FileSaver.saveAs(blob, "compressed.jpg")
+        })
     }
 }

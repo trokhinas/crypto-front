@@ -14,7 +14,8 @@ export enum AlgorithmCommands {
     SIGN = 'sign-message',
     CHECK_SIGN = 'check-sign',
     UPLOAD_FILE = 'upload',
-    COMPRESSION = 'compression'
+    COMPRESSION = 'compressed',
+    TRANSFORM = 'transformed'
 }
 
 export enum DisplayedButtons {
