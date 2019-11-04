@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Urls} from '../../enums/urls';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {MyResponse} from '../../common';
 import {LectureLink} from '../../common/courses';
 import {ResponseStatus} from '../../enums';
 import {GlobalDataService} from '../global-data.service';
-import * as FileSaver from 'file-saver';
-import {RequestOptions, ResponseContentType} from '@angular/http';
 
 @Injectable({
     providedIn: 'root'
@@ -43,5 +41,12 @@ export class LectureService {
         return this.http
             .post(url, formData, {params: params})
             .pipe(map(() => { return true; }));
+    }
+    
+    deleteLecture(id : number) {
+        const url = Urls.DELETE_LECTURE;
+        const params = new HttpParams().set('id', id.toString());
+        
+        return this.http.delete<MyResponse>(url, {params : params});
     }
 }

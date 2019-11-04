@@ -1,13 +1,15 @@
-<label>
-    Добавить
-    <input type="file" (change)="uploadLecture($event.target['files'])">
+<label *ngIf="isTeacher()">
+    <button type="button" mat-button (click)="fileInput.click()">Добавить</button>
+    <input hidden (change)="uploadLecture($event.target['files'])" #fileInput type="file" id="file">
 </label>
-<div class="container" *ngIf="lectures && lectures.length !== 0">
-    <div class="row" *ngFor="let lecture of lectures">
+<hr>
+<div class="list-group-flush" *ngIf="lectures && lectures.length !== 0">
+    <ng-container *ngFor="let lecture of lectures">
         <app-lecture-link
                 [lectureId]="lecture.id"
                 [lectureTitle]="lecture.name"
-                (click)="downloadLecture(lecture.id, lecture.name)"
+                (download)="downloadLecture($event, lecture.name)"
+                (delete)="deleteLecture($event)"
         ></app-lecture-link>
-    </div>
+    </ng-container>
 </div>

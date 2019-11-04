@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {LectureLink} from '../../../../common/courses';
 import {LectureService} from '../../../../service/lecture/lecture.service';
 import * as FileSaver from 'file-saver';
+import {GlobalDataService} from '../../../../service/global-data.service';
+import {ResponseStatus} from '../../../../enums';
 
 @Component({
     selector: 'app-lecture-list',
@@ -11,7 +13,8 @@ import * as FileSaver from 'file-saver';
 export class LectureListComponent implements OnInit {
     lectures : Array<LectureLink>;
     
-    constructor(private service: LectureService) {
+    constructor(private service: LectureService,
+                private global: GlobalDataService) {
     }
     
     ngOnInit() {
@@ -38,5 +41,20 @@ export class LectureListComponent implements OnInit {
             },
             () => alert('Произошла ошибка')
         );
+    }
+    
+    isTeacher() {
+        return this.global.isTeacher();
+    }
+    
+    deleteLecture(id : number) {
+        this.service.deleteLecture(id).subscribe(response => {
+            if (response.status == ResponseStatus.OK) {
+                alert('Лекция успешно удалена');
+                this.initLectures();
+            } else {
+                alert(response.message);
+            }
+        })
     }
 }

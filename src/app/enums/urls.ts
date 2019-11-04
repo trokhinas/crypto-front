@@ -18,5 +18,6 @@ export enum Urls {
     
     ALL_LECTURES = 'api/lecture/all',
     DOWNLOAD_LECTURE = 'api/lecture/find',
-    UPLOAD_LECTURE = 'api/lecture/upload'
+    UPLOAD_LECTURE = 'api/lecture/upload',
+    DELETE_LECTURE = 'api/lecture'
 }

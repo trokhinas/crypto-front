@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-lecture-link',
@@ -8,10 +8,31 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 export class LectureLinkComponent implements OnInit {
     @Input() lectureId: number;
     @Input() lectureTitle: string;
+    
+    @Output('delete') deleteEmitter = new EventEmitter<number>();
+    @Output('download') downloadEmitter = new EventEmitter<number>();
+    
+    private isFocused : boolean;
 
     constructor() { }
     
     ngOnInit() {
+        this.isFocused = false;
     }
-
+    
+    emitDelete() {
+        this.deleteEmitter.emit(this.lectureId);
+    }
+    
+    emitDownload() {
+        this.downloadEmitter.emit(this.lectureId);
+    }
+    
+    setFocus() {
+        this.isFocused = true;
+    }
+    
+    clearFocus() {
+        this.isFocused = false;
+    }
 }

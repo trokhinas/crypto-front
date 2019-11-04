@@ -1,5 +1,24 @@
-<div>
-    <span>
-        {{lectureTitle}}
-    </span>
-</div>
+<ng-container>
+    <a class="list-group-item list-group-item-action"
+       style="cursor: pointer"
+       (mouseenter)="setFocus()"
+       (mouseleave)="clearFocus()"
+    >
+        <div class="row">
+            <div class="col-11"
+                 (click)="emitDownload()"
+            >
+                <span>
+                    {{lectureTitle}}
+                </span>
+            </div>
+            <div class="col-1">
+                    <mat-icon
+                            *ngIf="isFocused"
+                            (click)="emitDelete()"
+                    >delete
+                    </mat-icon>
+            </div>
+        </div>
+    </a>
+</ng-container>
