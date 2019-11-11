@@ -1,4 +1,4 @@
-<div *ngIf="data && data.length && columns && columns.length">
+<div *ngIf="data && data.length && columns && columns.length && !isEditVisible">
     <mat-table [dataSource]="data">
 
         <ng-container
@@ -31,4 +31,8 @@
 
     </mat-table>
 </div>
+<router-outlet #myOutlet
+    (activate)="routerActivate()"
+    (deactivate)="routerDeactivate()"
+></router-outlet>
 

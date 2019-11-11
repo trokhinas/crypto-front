@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Roles} from '../../../enums';
-import {User} from '../../../common/auth';
+import {GridData} from '../../../common/auth';
 import {TestLink} from '../../../common/tests';
 import {Router} from '@angular/router';
 import {ProfileService} from '../../../service/profile/profile.service';
@@ -11,7 +11,7 @@ import {ProfileService} from '../../../service/profile/profile.service';
     styleUrls: ['./profile-data.component.scss']
 })
 export class ProfileDataComponent implements OnInit {
-    @Input() user: User;
+    @Input() user: GridData;
     @Input() role: Roles;
 
     testLinks: Array<TestLink>;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../service/auth.service';
 import {Router} from '@angular/router';
-import {User} from '../../../common/auth';
+import {GridData} from '../../../common/auth';
 import {Roles} from '../../../enums';
 
 @Component({
@@ -10,7 +10,7 @@ import {Roles} from '../../../enums';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-    user: User;
+    user: GridData;
     role: Roles;
     
     constructor(

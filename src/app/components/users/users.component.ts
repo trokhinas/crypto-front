@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {GridColumn, GridData} from '../../common/users';
 import {UsersService} from '../../service/users/users.service';
 import {GridColumnType} from '../../enums/columns';
 import {ResponseStatus} from '../../enums';
+import {Router, RouterOutlet} from '@angular/router';
+import {PlatformLocation} from '@angular/common';
 
 @Component({
     selector: 'app-users',
@@ -10,16 +12,24 @@ import {ResponseStatus} from '../../enums';
     styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+    @ViewChild('myOutlet') routerOutlet : RouterOutlet;
     columns: Array<GridColumn>;
     data: Array<GridData>;
     displayedColumns : Array<String>;
+    isEditVisible: boolean;
     
-    
-    constructor(private usersService: UsersService) {
+    constructor(private usersService: UsersService,
+                private router: Router,
+                private location: PlatformLocation) {
     }
     
     ngOnInit() {
+        this.location.onPopState(() => {
+            this.initData();
+            this.isEditVisible = this.routerOutlet.isActivated;
+        });
         this.initData();
+        this.isEditVisible = this.routerOutlet.isActivated;
     }
     
     initData() {
@@ -40,7 +50,8 @@ export class UsersComponent implements OnInit {
     }
     
     editUser(row : GridData) {
-        console.log(row);
+        this.usersService.editedUser = row;
+        this.router.navigate(['/main/users/edit']);
     }
     
     deleteUser(row : GridData) {
@@ -52,5 +63,13 @@ export class UsersComponent implements OnInit {
             }
             this.initData();
         });
+    }
+    
+    routerActivate() {
+        this.isEditVisible = true;
+    }
+    
+    routerDeactivate() {
+        this.isEditVisible = false;
     }
 }

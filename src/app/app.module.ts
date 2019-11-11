@@ -58,6 +58,7 @@ import { TaskListComponent } from './components/tests/test-create/task-list/task
 import { TaskTileComponent } from './components/tests/test-create/task-list/task-tile/task-tile.component';
 import { SelectComponent } from './components/common/select/select.component';
 import { AnswersListComponent } from './components/tests/test-create/task-list/task-tile/answers-list/answers-list.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { AnswersListComponent } from './components/tests/test-create/task-list/t
       TaskTileComponent,
       SelectComponent,
       AnswersListComponent,
+      UserEditComponent,
   ],
   imports: [
       BrowserModule,

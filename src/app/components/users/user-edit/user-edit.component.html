@@ -1,0 +1,31 @@
+<h2>{{getTitle()}}</h2>
+<app-subheader
+        [title]="getSubTitle()"
+>
+</app-subheader>
+<button mat-button
+    (click)="save()"
+>Сохранить</button>
+<ng-container *ngIf="keys && keys.length !== 0">
+    <form class="form">
+
+        <mat-form-field class="full-width" *ngFor="let x of keys">
+            <ng-container *ngIf="x.key !== 'roleId'">
+                <input matInput
+                       [placeholder]="x.name"
+                       [(ngModel)]="user[x.key]"
+                       [name]="x.key">
+            </ng-container>
+
+            <ng-container *ngIf="x.key === 'roleId'">
+                <mat-select [(value)]="user[x.key]" [placeholder]="x.name">
+                    <mat-option [value]="3000">Администратор</mat-option>
+                    <mat-option [value]="2000">Преподаватель</mat-option>
+                    <mat-option [value]="1000">Студент</mat-option>
+                </mat-select>
+            </ng-container>
+
+        </mat-form-field>
+
+    </form>
+</ng-container>

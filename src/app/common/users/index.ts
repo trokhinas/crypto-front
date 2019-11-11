@@ -14,3 +14,8 @@ export interface GridColumn {
 export interface GridData {
     [key: string]: any;
 }
+
+export interface InputKey {
+    name: string;
+    key: string;
+}

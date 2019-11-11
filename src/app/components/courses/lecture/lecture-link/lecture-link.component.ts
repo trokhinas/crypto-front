@@ -12,7 +12,7 @@ export class LectureLinkComponent implements OnInit {
     @Output('delete') deleteEmitter = new EventEmitter<number>();
     @Output('download') downloadEmitter = new EventEmitter<number>();
     
-    private isFocused : boolean;
+    isFocused : boolean;
 
     constructor() { }
     

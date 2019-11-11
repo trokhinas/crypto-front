@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../common/auth';
+import {GridData} from '../../common/auth';
 import {Roles} from '../../enums';
 import {AuthService} from '../../service/auth.service';
 
@@ -9,7 +9,7 @@ import {AuthService} from '../../service/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    user: User;
+    user: GridData;
     role: Roles;
 
     constructor(private auth: AuthService) { }

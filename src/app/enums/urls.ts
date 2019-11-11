@@ -15,6 +15,7 @@ export enum Urls {
     
     USER_GRID_MARKS = 'api/user-grid/marks',
     USER_GRID_EDIT = 'api/user-grid/users',
+    USER_SAVE = 'api/user',
     
     ALL_LECTURES = 'api/lecture/all',
     DOWNLOAD_LECTURE = 'api/lecture/find',

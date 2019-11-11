@@ -6,7 +6,7 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface User {
+export interface GridData {
   id: number
   name: string;
   surname: string;
@@ -14,7 +14,7 @@ export interface User {
 }
 
 export interface AuthResponse {
-  user: User;
+  user: GridData;
   role: Roles;
 }
 
