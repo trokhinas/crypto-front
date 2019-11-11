@@ -5,6 +5,7 @@ import {GridColumnType} from '../../enums/columns';
 import {ResponseStatus} from '../../enums';
 import {Router, RouterOutlet} from '@angular/router';
 import {PlatformLocation} from '@angular/common';
+import {GlobalDataService} from '../../service/global-data.service';
 
 @Component({
     selector: 'app-users',
@@ -20,7 +21,8 @@ export class UsersComponent implements OnInit {
     
     constructor(private usersService: UsersService,
                 private router: Router,
-                private location: PlatformLocation) {
+                private location: PlatformLocation,
+                private global: GlobalDataService) {
     }
     
     ngOnInit() {
@@ -71,5 +73,17 @@ export class UsersComponent implements OnInit {
     
     routerDeactivate() {
         this.isEditVisible = false;
+    }
+
+    getSubTitle() {
+        return "Таблица с данными";
+    }
+
+    add() {
+        this.router.navigate(['/main/users/edit']);
+    }
+
+    isAdmin() {
+        return this.global.isAdmin();
     }
 }

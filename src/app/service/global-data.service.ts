@@ -14,8 +14,8 @@ export class GlobalDataService {
         private auth: AuthService) {
 
         this.auth.currentUserData.subscribe(data => {
-            this.currentUser = data.user;
-            this.currentRole = data.role;
+            this.currentUser = data && data.user || null;
+            this.currentRole = data && data.role || Roles.USER;
         });
     }
 

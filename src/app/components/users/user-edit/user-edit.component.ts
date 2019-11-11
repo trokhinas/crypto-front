@@ -23,10 +23,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
     }
     
     ngOnInit() {
-        this.user = copyObject(this.userService.editedUser);
+        this.user =
+            this.userService.editedUser &&
+            copyObject(this.userService.editedUser) ||
+            {};
         this.isEdit =
-            this.user !== null &&
-            this.user !== undefined;
+            this.userService.editedUser !== null &&
+            this.userService.editedUser !== undefined;
         this.keys = this.isEdit ? this.userService.editKeys : this.userService.createKeys;
     }
     
