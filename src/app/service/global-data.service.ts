@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GridData} from '../common/auth';
+import {User} from '../common/auth';
 import {Roles} from '../enums';
 import {AuthService} from './auth.service';
 
@@ -7,7 +7,7 @@ import {AuthService} from './auth.service';
     providedIn: 'root'
 })
 export class GlobalDataService {
-    private currentUser: GridData;
+    private currentUser: User;
     private currentRole: Roles;
 
     constructor(

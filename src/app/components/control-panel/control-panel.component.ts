@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GridData} from '../../common/auth';
+import {User} from '../../common/auth';
 import {Roles} from '../../enums';
 import {Router} from '@angular/router';
 
@@ -16,7 +16,7 @@ interface PanelLink {
 })
 
 export class ControlPanelComponent implements OnInit {
-    @Input() private user: GridData;
+    @Input() private user: User;
     @Input() private role: Roles;
 
     links: Array<PanelLink> = [

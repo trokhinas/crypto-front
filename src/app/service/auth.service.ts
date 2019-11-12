@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AuthResponse, AuthResponseWrapper, LoginRequest, GridData} from '../common/auth';
+import {AuthResponse, AuthResponseWrapper, LoginRequest, User} from '../common/auth';
 import {Urls} from '../enums/urls';
 import {ResponseStatus, Roles} from '../enums';
 
