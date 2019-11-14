@@ -4,20 +4,33 @@
        (mouseenter)="setFocus()"
        (mouseleave)="clearFocus()"
     >
-        <div class="row">
-            <div class="col-11"
-                 (click)="emitDownload()"
+        <div class="row" *ngIf="isAccessed()">
+            <div
+                    class="col-11"
+                    (click)="emitDownload()"
             >
                 <span>
                     {{lectureTitle}}
                 </span>
             </div>
-            <div class="col-1">
-                    <mat-icon
-                            *ngIf="isFocused"
-                            (click)="emitDelete()"
-                    >delete
-                    </mat-icon>
+            <div class="col-1"
+                 *ngIf="isFocused">
+                <mat-icon
+
+                        (click)="emitDelete()"
+                >delete
+                </mat-icon>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isAccessed()">
+            <div
+                    class="col-12"
+                    (click)="emitDownload()"
+            >
+                <span>
+                    {{lectureTitle}}
+                </span>
             </div>
         </div>
     </a>

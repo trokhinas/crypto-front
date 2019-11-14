@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {GlobalDataService} from '../../../../service/global-data.service';
 
 @Component({
   selector: 'app-lecture-link',
@@ -14,7 +15,7 @@ export class LectureLinkComponent implements OnInit {
     
     isFocused : boolean;
 
-    constructor() { }
+    constructor(private global: GlobalDataService) { }
     
     ngOnInit() {
         this.isFocused = false;
@@ -34,5 +35,9 @@ export class LectureLinkComponent implements OnInit {
     
     clearFocus() {
         this.isFocused = false;
+    }
+    
+    isAccessed() {
+        return this.global.isTeacher();
     }
 }
