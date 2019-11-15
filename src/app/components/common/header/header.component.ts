@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
         this.auth.logout();
         this.router.navigate(['/login']);
     }
+
+    isLoggedIn() {
+        return localStorage.getItem('currentUser');
+    }
 }

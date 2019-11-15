@@ -9,6 +9,7 @@
         </a>
         <a class="float-right"
            style="cursor: pointer"
+           *ngIf="isLoggedIn()"
            (click)="logout()">
             <mat-icon [color]="'accent'">exit_to_app</mat-icon>
         </a>
